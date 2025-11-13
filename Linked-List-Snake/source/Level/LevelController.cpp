@@ -1,29 +1,44 @@
 #include "../../include/Level/LevelController.h"
+#include "../../include/Level/LevelModel.h"
+#include "../../include/Level/LevelView.h"
 
 namespace Level
 {
     LevelController::LevelController()
     {
-        // SampleClass's default constructor
+        level_model = new LevelModel();
+        level_view = new LevelView();
     }
 
     LevelController::~LevelController()
     {
-        // SampleClass's destructor
+        delete level_model;
+        delete level_view;
     }
 
     void LevelController::initialize()
     {
-        // To be called when the object is created
+        level_view->initialize();
+        level_model->initialize(level_view->getGridWidth(), level_view->getGridHeight());
     }
 
     void LevelController::update()
     {
-        // To be called on every frame
+        level_view->update();
     }
 
     void LevelController::render()
     {
-        // To be called on every frame
+        level_view->render();
+    }
+
+    float LevelController::getCellWidth()
+    {
+        return level_model->getCellWidth();
+    }
+
+    float LevelController::getCellHeight()
+    {
+        return level_model->getCellHeight();
     }
 }

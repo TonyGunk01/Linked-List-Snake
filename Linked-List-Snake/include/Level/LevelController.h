@@ -1,15 +1,27 @@
 #pragma once
 
+#include <vector>
+#include "LevelModel.h"
+
 namespace Level
 {
+    class LevelView;
+
     class LevelController
     {
-        public:
-            LevelController();  // Default constructor
-            ~LevelController(); // Destructor
+        private:
+            LevelModel* level_model;
+            LevelView* level_view;
 
-            void initialize(); // To be called when the object is created
-            void update();     // To be called on every frame
-            void render();     // To be called on every frame
+        public:
+            LevelController();
+            ~LevelController();
+
+            void initialize();
+            void update();    
+            void render(); 
+
+            float getCellWidth();
+            float getCellHeight();
     };
 }
