@@ -1,9 +1,10 @@
 #pragma once
 
+#include "LevelNumber.h"
+
 namespace Level
 {
     class LevelController;
-    enum class LevelNumber;
 
     class LevelService 
     {
