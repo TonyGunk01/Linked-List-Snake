@@ -15,12 +15,12 @@ namespace Level
             void destroy();
 
         public:
-            LevelService();  // Default constructor
-            ~LevelService(); // Destructor
+            LevelService();
+            ~LevelService();
 
-            void initialize(); // To be called when the object is created
-            void update();     // To be called on every frame
-            void render();     // To be called on every frame
+            void initialize();
+            void update();
+            void render();
 
             void createLevel(LevelNumber level_to_load);
     };
