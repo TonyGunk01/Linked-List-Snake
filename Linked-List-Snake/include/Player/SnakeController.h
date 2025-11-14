@@ -1,7 +1,12 @@
 #pragma once
 
+#include "SFML/System/Vector2.hpp"
+#include "Direction.h"
+
 namespace Player
 {
+	using namespace sf;
+
 	enum class SnakeState
 	{
 		ALIVE,
@@ -13,12 +18,17 @@ namespace Player
 		private:
 			const int initial_snake_length = 10;
 
+			const Vector2i default_position = Vector2i(25, 13);
+			const Direction default_direction = Direction::RIGHT;
+
 			SnakeState current_snake_state;
+			Direction current_snake_direction;
 
 			void processPlayerInput();
 			void updateSnakeDirection();
 			void moveSnake();
 			void processSnakeCollision();
+			void handleRestart();
 			void reset();
 			void destroy();
 
@@ -30,8 +40,6 @@ namespace Player
 			void update();
 			void render();
 
-
-			void handleRestart();
 			void spawnSnake();
 			void respawnSnake();
 			void setSnakeState(SnakeState state);
