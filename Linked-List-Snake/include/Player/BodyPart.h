@@ -24,6 +24,9 @@ namespace Player
 			void initializeBodyPartImage();
 			void destroy();
 
+			Vector2f getBodyPartScreenPosition();
+			float getRotationAngle();
+
 		public:
 			BodyPart();
 			~BodyPart();
@@ -31,5 +34,8 @@ namespace Player
 			void initialize(float width, float height, Vector2i pos, Direction dir);
 			void render();
 			void update();
+
+			void setDirection(Direction direction);
+			void updatePosition();
 	};
 }
