@@ -1,23 +1,35 @@
 #pragma once
+
 #include "UI/UIElement/ImageView.h"
 #include "Player/Direction.h"
 
 namespace Player
 {
-	
+	using namespace UI::UIElement;
+	using namespace sf;
 	class BodyPart
 	{
 		private:
 
 		protected:
-			UI::UIElement::ImageView* bodypart_image;
+			ImageView* bodypart_image;
 
-			sf::Vector2i grid_position;
+			Vector2i grid_position;
 			Direction direction;
 
 			float bodypart_width;
 			float bodypart_height;
 
+			void createBodyPartImage();
+			void initializeBodyPartImage();
+			void destroy();
+
 		public:
+			BodyPart();
+			~BodyPart();
+
+			void initialize(float width, float height, Vector2i pos, Direction dir);
+			void render();
+			void update();
 	};
 }
