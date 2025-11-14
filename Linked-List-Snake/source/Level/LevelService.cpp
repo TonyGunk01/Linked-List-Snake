@@ -1,7 +1,7 @@
 #include "../../include/Level/LevelService.h"
 #include "../../include/Level/LevelController.h"
-#include "../../include/Level/LevelData.h"
 #include "../../include/Global/ServiceLocator.h"
+#include "Player/PlayerService.h"
 
 namespace Level
 {
@@ -42,6 +42,11 @@ namespace Level
     void LevelService::createLevel(LevelNumber level_to_load)
     {
         current_level = level_to_load;
+    }
+
+    void LevelService::spawnPlayer()
+    {
+        ServiceLocator::getInstance()->getPlayerService()->spawnPlayer();
     }
 
     void LevelService::destroy()
