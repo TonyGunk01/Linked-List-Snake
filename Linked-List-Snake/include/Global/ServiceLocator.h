@@ -42,6 +42,7 @@ namespace Global
             Level::LevelService* getLevelService();
             Player::PlayerService* getPlayerService();
 
+
             void deleteServiceLocator();
     };
 }
