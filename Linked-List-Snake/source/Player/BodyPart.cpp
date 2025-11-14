@@ -87,9 +87,54 @@ namespace Player
 		bodypart_image->update();
 	}
 
+	Vector2i BodyPart::getNextPosition()
+	{
+		switch (direction)
+		{
+			case Direction::UP:
+				return getNextPositionUp();
+
+			case Direction::DOWN:
+				return getNextPositionDown();
+
+			case Direction::RIGHT:
+				return getNextPositionRight();
+
+			case Direction::LEFT:
+				return getNextPositionLeft();
+
+			default:
+				return grid_position;
+		}
+	}
+
+	Vector2i BodyPart::getNextPositionDown()
+	{
+		return Vector2i(grid_position.x, grid_position.y + 1);
+	}
+
+	Vector2i BodyPart::getNextPositionUp()
+	{
+		return Vector2i(grid_position.x, grid_position.y - 1);
+	}
+
+	Vector2i BodyPart::getNextPositionRight()
+	{
+		return Vector2i(grid_position.x + 1, grid_position.y);
+	}
+
+	Vector2i BodyPart::getNextPositionLeft()
+	{
+		return Vector2i(grid_position.x - 1, grid_position.y);
+	}
+
+	void BodyPart::setPosition(Vector2i position)
+	{
+		grid_position = position;
+	}
+
 	void BodyPart::destroy()
 	{
 		delete bodypart_image;
 	}
-
 }

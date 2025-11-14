@@ -27,6 +27,11 @@ namespace Player
 			Vector2f getBodyPartScreenPosition();
 			float getRotationAngle();
 
+			Vector2i getNextPositionUp();
+			Vector2i getNextPositionDown();
+			Vector2i getNextPositionLeft();
+			Vector2i getNextPositionRight();
+
 		public:
 			BodyPart();
 			~BodyPart();
@@ -37,5 +42,10 @@ namespace Player
 
 			void setDirection(Direction direction);
 			void updatePosition();
+
+			Direction getDirection();
+			void setPosition(Vector2i position);
+			Vector2i getPosition();
+			Vector2i getNextPosition();
 	};
 }
