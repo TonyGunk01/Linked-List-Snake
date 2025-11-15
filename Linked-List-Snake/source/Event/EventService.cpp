@@ -8,7 +8,10 @@ namespace Event
     using namespace Global;
     using namespace Graphics;
 
-    EventService::EventService() { game_window = nullptr; }
+    EventService::EventService() 
+    { 
+        game_window = nullptr; 
+    }
 
     EventService::~EventService() = default;
 
@@ -42,12 +45,13 @@ namespace Event
         {
             switch (current_button_state)
             {
-            case ButtonState::RELEASED:
-                current_button_state = ButtonState::PRESSED;
-                break;
-            case ButtonState::PRESSED:
-                current_button_state = ButtonState::HELD;
-                break;
+                case ButtonState::RELEASED:
+                    current_button_state = ButtonState::PRESSED;
+                    break;
+
+                case ButtonState::PRESSED:
+                    current_button_state = ButtonState::HELD;
+                    break;
             }
         }
         else
@@ -56,11 +60,20 @@ namespace Event
         }
     }
 
-    bool EventService::isGameWindowOpen() { return game_window != nullptr; }
+    bool EventService::isGameWindowOpen() 
+    { 
+        return game_window != nullptr; 
+    }
 
-    bool EventService::gameWindowWasClosed() { return game_event.type == sf::Event::Closed; }
+    bool EventService::gameWindowWasClosed() 
+    { 
+        return game_event.type == sf::Event::Closed; 
+    }
 
-    bool EventService::hasQuitGame() { return (isKeyboardEvent() && pressedEscapeKey()); }
+    bool EventService::hasQuitGame() 
+    { 
+        return (isKeyboardEvent() && pressedEscapeKey()); 
+    }
 
     bool EventService::isKeyboardEvent() { return game_event.type == sf::Event::KeyPressed; }
 
