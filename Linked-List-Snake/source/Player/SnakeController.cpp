@@ -92,6 +92,9 @@ namespace Player
 			processSnakeCollision();
 			moveSnake();
 		}
+
+		if (single_linked_list->processNodeCollision())
+			current_snake_state = SnakeState::DEAD;
 	}
 
 	void SnakeController::handleRestart()
@@ -127,8 +130,19 @@ namespace Player
 
 	void SnakeController::delayedUpdate()
 	{
-		
+		elapsed_duration += ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+
+		if (elapsed_duration >= movement_frame_duration)
+		{
+			elapsed_duration = 0.f;
+			updateSnakeDirection();
+			processSnakeCollision();
+			
+			if(current_snake_state == SnakeState::ALIVE)
+				moveSnake();
+		}
 	}
+
 	void SnakeController::destroy()
 	{
 		delete single_linked_list;
