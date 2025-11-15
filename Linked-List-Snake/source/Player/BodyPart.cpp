@@ -1,6 +1,7 @@
 #include "Player/BodyPart.h"
 #include "Level/LevelView.h"
 #include "Global/Config.h"
+#include "Level/LevelModel.h"
 
 namespace Player
 {
@@ -110,22 +111,22 @@ namespace Player
 
 	Vector2i BodyPart::getNextPositionDown()
 	{
-		return Vector2i(grid_position.x, grid_position.y + 1);
+		return Vector2i(grid_position.x, (grid_position.y + 1) % (LevelModel::number_of_rows));
 	}
 
 	Vector2i BodyPart::getNextPositionUp()
 	{
-		return Vector2i(grid_position.x, grid_position.y - 1);
+		return Vector2i(grid_position.x, (grid_position.y - 1) + (LevelModel::number_of_rows) % (LevelModel::number_of_rows));
 	}
 
 	Vector2i BodyPart::getNextPositionRight()
 	{
-		return Vector2i(grid_position.x + 1, grid_position.y);
+		return Vector2i((grid_position.x + 1) % (LevelModel::number_of_columns), grid_position.y);
 	}
 
 	Vector2i BodyPart::getNextPositionLeft()
 	{
-		return Vector2i(grid_position.x - 1, grid_position.y);
+		return Vector2i((grid_position.x - 1 + LevelModel::number_of_columns) % (LevelModel::number_of_columns), grid_position.y);
 	}
 
 	void BodyPart::setPosition(Vector2i position)
