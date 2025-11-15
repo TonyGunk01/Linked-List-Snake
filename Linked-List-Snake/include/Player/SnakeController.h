@@ -2,11 +2,14 @@
 
 #include "SFML/System/Vector2.hpp"
 #include "Direction.h"
+#include "LinkedList/Node.h"
+#include "LinkedList/SingleLinkedList.h"
 
 namespace Player
 {
 	using namespace sf;
-
+	using namespace LinkedList;
+	
 	enum class SnakeState
 	{
 		ALIVE,
@@ -24,6 +27,8 @@ namespace Player
 			SnakeState current_snake_state;
 			Direction current_snake_direction;
 
+			SingleLinkedList* single_linked_list;
+
 			void processPlayerInput();
 			void updateSnakeDirection();
 			void moveSnake();
@@ -31,6 +36,7 @@ namespace Player
 			void handleRestart();
 			void reset();
 			void destroy();
+			void createLinkedList();
 
 		public:
 			SnakeController();
