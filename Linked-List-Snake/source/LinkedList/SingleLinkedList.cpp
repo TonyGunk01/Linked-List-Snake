@@ -22,7 +22,13 @@ namespace LinkedList
 
 	void SingleLinkedList::render()
 	{
-		head_node->body_part.render();
+		Node* cur_node = head_node;
+
+		while (cur_node != nullptr) 
+		{
+			cur_node->body_part.render();
+			cur_node = cur_node->next;
+		}
 	}
 
 	Node* SingleLinkedList::createNode()
@@ -30,11 +36,22 @@ namespace LinkedList
 		return new Node();
 	}
 
-	void SingleLinkedList::createHeadNode()
+	void SingleLinkedList::insertNodeAtTail()
 	{
-		head_node = createNode();
-		head_node->body_part.initialize(node_width, node_height, default_position, default_direction);
+		Node* new_node = createNode();
+		Node* cur_node = head_node;
 
-		return;
+		if (cur_node == nullptr)
+		{
+			head_node = new_node;
+			new_node->body_part.initialize(node_width, node_height, default_position, default_direction);
+			return;
+		}
+
+		while (cur_node->next != nullptr)
+			cur_node = cur_node->next;
+
+		cur_node->next = new_node;
+		new_node->body_part.initialize(node_width, node_height, default_position, default_direction);
 	}
 }
