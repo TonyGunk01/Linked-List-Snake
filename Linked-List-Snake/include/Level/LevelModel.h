@@ -2,11 +2,13 @@
 
 #include "SFML/System/Vector2.hpp"
 #include "Level/LevelData.h"
+#include "Element/ElementData.h"
 #include <vector>
 
 namespace Level
 {
 	using namespace std;
+	using namespace Element;
 
 	class LevelModel
 	{
@@ -14,6 +16,9 @@ namespace Level
 			vector<LevelData> level_configurations;
 			float cell_width;
 			float cell_height;
+
+			void initializeLevelData();
+			vector<ElementData>& getElementDataList(int level_to_load);
 
 		public:
 			static const int number_of_rows = 28;
