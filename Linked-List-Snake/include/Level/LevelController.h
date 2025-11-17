@@ -13,8 +13,6 @@ namespace Level
             LevelModel* level_model;
             LevelView* level_view;
 
-			const vector<ElementData>& getElementDataList(int level_to_load);
-
         public:
             LevelController();
             ~LevelController();
@@ -25,5 +23,7 @@ namespace Level
 
             float getCellWidth();
             float getCellHeight();
+
+            const vector<ElementData>& getElementDataList(int level_to_load);
     };
 }

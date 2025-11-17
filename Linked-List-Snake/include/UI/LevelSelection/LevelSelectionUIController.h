@@ -10,8 +10,9 @@ namespace UI
 	namespace LevelSelection
 	{
 		using namespace UIElement;
+		using namespace Interface;
 
-		class LevelSelectionUIController : public Interface::IUIController
+		class LevelSelectionUIController : public IUIController
 		{
 			private:
 				const float button_width = 400.0f;

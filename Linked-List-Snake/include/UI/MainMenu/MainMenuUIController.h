@@ -1,4 +1,5 @@
 #pragma once
+
 #include <SFML/Graphics.hpp>
 #include "UI/Interface/IUIController.h"
 #include "UI/UIElement/ImageView.h"
@@ -7,20 +8,21 @@
 namespace UI
 {
 	using namespace UIElement;
+	using namespace Interface;
+
 	namespace MainMenu
 	{
-		class MainMenuUIController : public Interface::IUIController
+		class MainMenuUIController : public IUIController
 		{
 			private:
-				// Constants:
-				const float button_width = 400.f;
-				const float button_height = 140.f;
+				const float button_width = 400.0f;
+				const float button_height = 140.0f;
 
-				const float play_button_y_position = 500.f;
-				const float instructions_button_y_position = 700.f;
-				const float quit_button_y_position = 900.f;
+				const float play_button_y_position = 500.0f;
+				const float instructions_button_y_position = 700.0f;
+				const float quit_button_y_position = 900.0f;
 
-				const float background_alpha = 85.f;
+				const float background_alpha = 85.0f;
 
 				ImageView* background_image;
 

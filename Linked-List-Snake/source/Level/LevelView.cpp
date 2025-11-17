@@ -1,14 +1,11 @@
-#include "../../include/Level/LevelView.h"
+#include "Level/LevelView.h"
 #include "Global/ServiceLocator.h"
 #include "Graphics/GraphicService.h"
-#include "../../include/UI/UIElement/RectangleShapeView.h"
+#include "UI/UIElement/RectangleShapeView.h"
 
 namespace Level
 {
-    class GameService;
-
     using namespace UI::UIElement;
-
     using namespace Global;
 
     LevelView::LevelView() 
@@ -30,12 +27,8 @@ namespace Level
 
     void LevelView::update()
     {
-        // To be called on every frame
-    }
-
-    void LevelView::render() 
-    {
-        // To be called on every frame
+		background_rectangle->update();
+		border_rectangle->update();
     }
 
     void LevelView::initializeBackground()
@@ -45,7 +38,6 @@ namespace Level
         Vector2f background_size = Vector2f(game_window->getSize().x, game_window->getSize().y);
 
         background_rectangle->initialize(background_size, Vector2f(0, 0), 0, background_color);
-
         background_rectangle->show();
     }
 
@@ -76,14 +68,8 @@ namespace Level
 
     void LevelView::destroy()
     {
-        delete (background_rectangle);
-        delete (border_rectangle);
-    }
-
-    void LevelView::update()
-    {
-        background_rectangle->update();
-        border_rectangle->update();
+        delete background_rectangle;
+        delete border_rectangle;
     }
 
     void LevelView::render()

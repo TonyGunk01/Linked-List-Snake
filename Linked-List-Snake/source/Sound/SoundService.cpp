@@ -1,7 +1,7 @@
 #include "Sound/SoundService.h"
 #include "Global/Config.h"
 
-namespace Sound
+namespace Sounds
 {
 	using namespace Global;
 
@@ -27,12 +27,13 @@ namespace Sound
 	{
 		switch (soundType)
 		{
-		case SoundType::BUTTON_CLICK:
-			sound_effect.setBuffer(buffer_button_click);
-			break;
-		default:
-			printf("Invalid sound type");
-			return;
+			case SoundType::BUTTON_CLICK:
+				sound_effect.setBuffer(buffer_button_click);
+				break;
+
+			default:
+				printf("Invalid sound type");
+				return;
 		}
 
 		sound_effect.play();

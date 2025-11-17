@@ -28,9 +28,9 @@ namespace UI
 	{
 		splash_screen_controller = new SplashScreenUIController();
 		main_menu_controller = new MainMenuUIController();
+		level_selection_ui_controller = new LevelSelectionUIController();
 		instructions_screen_ui_controller = new InstructionsScreenUIController();
 		credits_screen_ui_controller = new CreditsScreenUIController();
-		level_selection_ui_controller = new LevelSelectionUIController();
 	}
 
 	UIService::~UIService()
@@ -72,9 +72,9 @@ namespace UI
 	{
 		splash_screen_controller->initialize();
 		main_menu_controller->initialize();
+		level_selection_ui_controller->initialize();
 		instructions_screen_ui_controller->initialize();
 		credits_screen_ui_controller->initialize();
-		level_selection_ui_controller->initialize();
 	}
 
 	IUIController* UIService::getCurrentUIController()
@@ -105,8 +105,8 @@ namespace UI
 	{
 		delete splash_screen_controller;
 		delete main_menu_controller;
+		delete level_selection_ui_controller;
 		delete instructions_screen_ui_controller;
 		delete credits_screen_ui_controller;
-		delete level_selection_ui_controller;
 	}
 }

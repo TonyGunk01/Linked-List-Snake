@@ -7,10 +7,9 @@ namespace Player
 {
 	using namespace UI::UIElement;
 	using namespace sf;
+
 	class BodyPart
 	{
-		private:
-
 		protected:
 			ImageView* bodypart_image;
 

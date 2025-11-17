@@ -1,21 +1,21 @@
 #pragma once
+
 #include <SFML/Graphics.hpp>
-#include "../UI/UIElement/RectangleShapeView.h"
+#include "UI/UIElement/RectangleShapeView.h"
 
 namespace Level
 {
     using namespace sf;
-    
-    class UI::UIElement::RectangleShapeView;
-    
+    using namespace UI::UIElement;
+
     class LevelView
     {
         private:
             const Color background_color = Color(180, 200, 160);
             Color border_color = Color::Black;
 
-            RectangleShapeView* background_rectangle;
-            RectangleShapeView* border_rectangle;
+            UI::UIElement::RectangleShapeView* background_rectangle;
+            UI::UIElement::RectangleShapeView* border_rectangle;
 
             float grid_width;
             float grid_height;

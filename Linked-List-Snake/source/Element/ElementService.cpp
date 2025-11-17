@@ -41,7 +41,7 @@ namespace Element
 		}
 	}
 
-	void ElementService::spawnObstacle(sf::Vector2i position, float cell_width, float cell_height)
+	void ElementService::spawnObstacle(Vector2i position, float cell_width, float cell_height)
 	{
 		Obstacle* obstacle = new Obstacle();
 

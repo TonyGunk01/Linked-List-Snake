@@ -4,6 +4,8 @@
 
 namespace Level
 {
+    using namespace Element;
+
     LevelController::LevelController()
     {
         level_model = new LevelModel();

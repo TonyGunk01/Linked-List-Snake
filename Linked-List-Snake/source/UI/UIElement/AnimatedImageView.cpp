@@ -8,7 +8,7 @@ namespace UI
 
         AnimatedImageView::~AnimatedImageView() = default;
 
-        void AnimatedImageView::initialize(sf::String texture_path, float image_width, float image_height, sf::Vector2f position)
+        void AnimatedImageView::initialize(String texture_path, float image_width, float image_height, Vector2f position)
         {
             ImageView::initialize(texture_path, image_width, image_height, position);
         }
@@ -53,21 +53,20 @@ namespace UI
         void AnimatedImageView::handleAnimationProgress()
         {
             if (elapsed_duration >= animation_duration && callback_function)
-            {
                 callback_function();
-            }
         }
 
         void AnimatedImageView::updateAnimation()
         {
             switch (animation_type)
             {
-            case AnimationType::FADE_IN:
-                fadeIn();
-                break;
-            case AnimationType::FADE_OUT:
-                fadeOut();
-                break;
+                case AnimationType::FADE_IN:
+                    fadeIn();
+                    break;
+
+                case AnimationType::FADE_OUT:
+                    fadeOut();
+                    break;
             }
         }
 
@@ -83,14 +82,14 @@ namespace UI
 
         void AnimatedImageView::fadeIn()
         {
-            float alpha = std::min(1.0f, elapsed_duration / animation_duration);
-            image_sprite.setColor(sf::Color(255, 255, 255, static_cast<sf::Uint8>(alpha * 255)));
+            float alpha = min(1.0f, elapsed_duration / animation_duration);
+            image_sprite.setColor(Color(255, 255, 255, static_cast<Uint8>(alpha * 255)));
         }
 
         void AnimatedImageView::fadeOut()
         {
-            float alpha = std::max(0.0f, 1.0f - (elapsed_duration / animation_duration));
-            image_sprite.setColor(sf::Color(255, 255, 255, static_cast<sf::Uint8>(alpha * 255)));
+            float alpha = max(0.0f, 1.0f - (elapsed_duration / animation_duration));
+            image_sprite.setColor(Color(255, 255, 255, static_cast<Uint8>(alpha * 255)));
         }
 
         void AnimatedImageView::reset()

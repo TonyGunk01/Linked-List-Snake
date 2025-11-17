@@ -13,7 +13,7 @@ namespace UI
         using namespace Graphics;
         using namespace Global;
         using namespace UIElement;
-        using namespace Sound;
+        using namespace Sounds;
 
         SplashScreenUIController::SplashScreenUIController()
         {
@@ -22,7 +22,7 @@ namespace UI
 
         SplashScreenUIController::~SplashScreenUIController()
         {
-            delete (outscal_logo_view);
+            delete outscal_logo_view;
         }
 
         void SplashScreenUIController::initialize()
@@ -42,13 +42,13 @@ namespace UI
 
         void SplashScreenUIController::initializeOutscalLogo()
         {
-            sf::Vector2f position = getLogoPosition();
+            Vector2f position = getLogoPosition();
             outscal_logo_view->initialize(Config::outscal_logo_texture_path, logo_width, logo_height, position);
         }
 
         void SplashScreenUIController::fadeInAnimationCallback()
         {
-            outscal_logo_view->playAnimation(AnimationType::FADE_OUT, logo_animation_duration, std::bind(&SplashScreenUIController::fadeOutAnimationCallback, this));
+            outscal_logo_view->playAnimation(AnimationType::FADE_OUT, logo_animation_duration, bind(&SplashScreenUIController::fadeOutAnimationCallback, this));
         }
 
         void SplashScreenUIController::fadeOutAnimationCallback()
@@ -57,19 +57,19 @@ namespace UI
             GameService::setGameState(GameState::MAIN_MENU);
         }
 
-        sf::Vector2f SplashScreenUIController::getLogoPosition()
+        Vector2f SplashScreenUIController::getLogoPosition()
         {
-            sf::RenderWindow* game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
+            RenderWindow* game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
 
             float x_position = (game_window->getSize().x - logo_width) / 2.0f;
             float y_position = (game_window->getSize().y - logo_height) / 2.0f;
 
-            return sf::Vector2f(x_position, y_position);
+            return Vector2f(x_position, y_position);
         }
 
         void SplashScreenUIController::show()
         {
-            outscal_logo_view->playAnimation(AnimationType::FADE_IN, logo_animation_duration, std::bind(&SplashScreenUIController::fadeInAnimationCallback, this));
+            outscal_logo_view->playAnimation(AnimationType::FADE_IN, logo_animation_duration, bind(&SplashScreenUIController::fadeInAnimationCallback, this));
         }
     }
 }

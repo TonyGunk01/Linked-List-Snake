@@ -116,4 +116,36 @@ namespace LinkedList
 		while (head_node != nullptr)
 			removeNodeAtHead();
 	}
+
+	Vector2i SingleLinkedList::getNewNodePosition(Node* reference_node)
+	{
+		Direction reference_direction = reference_node->body_part.getDirection();
+		Vector2i reference_position = reference_node->body_part.getPosition();
+
+		switch (reference_direction)
+		{
+			case Direction::UP:
+				return Vector2i(reference_position.x, reference_position.y - 1);
+				break;
+
+			case Direction::DOWN:
+				return Vector2i(reference_position.x, reference_position.y + 1);
+				break;
+
+			case Direction::LEFT:
+				return Vector2i(reference_position.x + 1, reference_position.y);
+				break;
+
+			case Direction::RIGHT:
+				return Vector2i(reference_position.x - 1, reference_position.y);
+				break;
+		}
+
+		return default_position;
+	}
+
+	Node* SingleLinkedList::getHeadNode()
+	{
+		return head_node;
+	}
 }

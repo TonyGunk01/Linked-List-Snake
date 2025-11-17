@@ -9,19 +9,25 @@
 
 namespace UI
 {
+	using namespace SplashScreen;
+	using namespace MainMenu;
+	using namespace Instructions;
+	using namespace Credits;
+	using namespace LevelSelection;
+	using namespace Interface;
+
 	class UIService
 	{
 		private:
-			SplashScreen::SplashScreenUIController* splash_screen_controller;
-			MainMenu::MainMenuUIController* main_menu_controller;
-			Instructions::InstructionsScreenUIController* instructions_screen_ui_controller;
-			Credits::CreditsScreenUIController* credits_screen_ui_controller;
-			LevelSelection::LevelSelectionUIController* level_selection_ui_controller;
-
+			SplashScreenUIController* splash_screen_controller;
+			MainMenuUIController* main_menu_controller;
+			InstructionsScreenUIController* instructions_screen_ui_controller;
+			CreditsScreenUIController* credits_screen_ui_controller;
+			LevelSelectionUIController* level_selection_ui_controller;
 
 			void createControllers();
 			void initializeControllers();
-			Interface::IUIController* getCurrentUIController();
+			IUIController* getCurrentUIController();
 			void destroy();
 
 		public:

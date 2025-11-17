@@ -2,6 +2,7 @@
 #include "Level/LevelView.h"
 #include "Global/Config.h"
 #include "Level/LevelModel.h"
+#include "Global/ServiceLocator.h"
 
 namespace Player
 {
@@ -32,11 +33,6 @@ namespace Player
 	void BodyPart::render()
 	{
 		bodypart_image->render();
-	}
-
-	void BodyPart::update()
-	{
-
 	}
 
 	void BodyPart::createBodyPartImage()
@@ -76,9 +72,19 @@ namespace Player
 		}
 	}
 
+	Direction BodyPart::getDirection()
+	{
+		return direction;
+	}
+
 	void BodyPart::setDirection(Direction direction)
 	{
 		this->direction = direction;
+	}
+
+	Vector2i BodyPart::getPosition()
+	{
+		return grid_position;
 	}
 
 	void BodyPart::updatePosition()

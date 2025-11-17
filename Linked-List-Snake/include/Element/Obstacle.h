@@ -1,8 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include "../UI/UIElement/UIView.h"
-#include "../UI/UIElement/ImageView.h"
+#include "UI/UIElement/ImageView.h"
 
 namespace Element
 {

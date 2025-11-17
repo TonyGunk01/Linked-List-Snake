@@ -2,15 +2,15 @@
 #include "Global/ServiceLocator.h"
 #include "Level/LevelService.h"
 #include "Event/EventService.h"
-#include "LinkedList/SingleLinkedList.h"
-#include "LinkedList/Node.h"
+#include <iostream>
 
 namespace Player
 {
 	using namespace LinkedList;
 	using namespace Global;
 	using namespace Level;
-	using namespace Event;
+	using namespace Events;
+	using namespace Time;
 
 	SnakeController::SnakeController()
 	{
@@ -28,12 +28,13 @@ namespace Player
 		float width = ServiceLocator::getInstance()->getLevelService()->getCellWidth();
 		float height = ServiceLocator::getInstance()->getLevelService()->getCellHeight();
 
+		reset();
 		single_linked_list->initialize(width, height, default_position, default_direction);
 	}
 
 	void SnakeController::render()
 	{
-
+		single_linked_list->render();
 	}
 
 	void SnakeController::update()
@@ -42,9 +43,7 @@ namespace Player
 		{
 			case SnakeState::ALIVE:
 				processPlayerInput();
-				updateSnakeDirection();
-				processSnakeCollision();
-				moveSnake();
+				delayedUpdate();
 				break;
 
 			case SnakeState::DEAD:
@@ -55,6 +54,9 @@ namespace Player
 
 	void SnakeController::processPlayerInput()
 	{
+		if(current_input_state == InputState::PROCESSING)
+			return;
+
 		EventService* event_service = ServiceLocator::getInstance()->getEventService();
 
 		if (event_service->pressedUpArrowKey() && current_snake_direction != Direction::DOWN)
@@ -94,19 +96,10 @@ namespace Player
 
 	void SnakeController::processSnakeCollision()
 	{
-		elapsed_duration += ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
-
-		if (elapsed_duration > movement_frame_duration)
-		{
-			elapsed_duration = 0.0f;
-
-			updateSnakeDirection();
-			processSnakeCollision();
-			moveSnake();
-		}
-
 		if (single_linked_list->processNodeCollision())
+		{
 			current_snake_state = SnakeState::DEAD;
+		}
 	}
 
 	void SnakeController::handleRestart()
@@ -169,5 +162,10 @@ namespace Player
 	void SnakeController::destroy()
 	{
 		delete single_linked_list;
+	}
+
+	void SnakeController::createLinkedList()
+	{
+		single_linked_list = new SingleLinkedList();
 	}
 }

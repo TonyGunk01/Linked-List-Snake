@@ -1,25 +1,22 @@
-#include "../../../include/UI/LevelSelection/LevelSelectionUIController.h"
-#include "../../../include/Main/GameService.h"
-#include "../../../include/Graphics/GraphicService.h"
-#include "../../../include/Sound/SoundService.h"
-#include "../../../include/Event/EventService.h"
-#include "../../../include/UI/UIElement/ButtonView.h"
-#include "../../../include/UI/UIElement/ImageView.h"
+#include "UI/LevelSelection/LevelSelectionUIController.h"
+#include "Main/GameService.h"
+#include "Graphics/GraphicService.h"
+#include "Sound/SoundService.h"
+#include "Event/EventService.h"
+#include "UI/UIElement/ButtonView.h"
+#include "UI/UIElement/ImageView.h"
 #include "Global/Config.h"
 #include "Global/ServiceLocator.h"
-#include "../../../include/Level/LevelService.h"
-#include "../../../include/Level/LevelNumber.h"
+#include "Level/LevelService.h"
 
 namespace UI
 {
     using namespace UIElement;
     using namespace Global;
-    using namespace Event;
-    using namespace Sound;
+    using namespace Events;
+    using namespace Sounds;
     using namespace Main;
     using namespace sf;
-
-    enum class LevelNumber;
 
     namespace LevelSelection
     {
@@ -129,10 +126,10 @@ namespace UI
 
         void LevelSelectionUIController::destroy()
         {
-            delete (background_image);
-            delete (level_one_button);
-            delete (level_two_button);
-            delete (menu_button);
+            delete background_image;
+            delete level_one_button;
+            delete level_two_button;
+            delete menu_button;
         }
     }
 }

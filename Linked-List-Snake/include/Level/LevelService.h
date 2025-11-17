@@ -13,7 +13,6 @@ namespace Level
             LevelNumber current_level;
 
             void createLevelController();
-            void destroy();
             void spawnPlayer();
 			void spawnLevelElements(LevelNumber level_to_load);
             void destroy();

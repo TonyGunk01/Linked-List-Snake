@@ -17,6 +17,7 @@ namespace LinkedList
 			Direction default_direction;
 
 			Node* createNode();
+			Vector2i getNewNodePosition(Node* reference_node);
 
 		public:
 			SingleLinkedList();
@@ -26,12 +27,12 @@ namespace LinkedList
 			void render();
 
 			void insertNodeAtTail();
-
 			void updateNodeDirection(Direction direction_to_set);
 			void updateNodePosition();
 			void removeNodeAtHead();
 			void removeAllNodes();
 
 			bool processNodeCollision();
+			Node* getHeadNode();
 	};
 }

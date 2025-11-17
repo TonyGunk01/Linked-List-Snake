@@ -7,14 +7,14 @@ namespace UI
 {
     namespace UIElement
     {
-        using namespace Event;
+        using namespace Events;
         using namespace Global;
 
         ButtonView::ButtonView() = default;
 
         ButtonView::~ButtonView() = default;
 
-        void ButtonView::initialize(sf::String title, sf::String texture_path, float button_width, float button_height, sf::Vector2f position)
+        void ButtonView::initialize(String title, String texture_path, float button_width, float button_height, Vector2f position)
         {
             ImageView::initialize(texture_path, button_width, button_height, position);
             button_title = title;
@@ -30,9 +30,7 @@ namespace UI
             ImageView::update();
 
             if (ui_state == UIState::VISIBLE)
-            {
                 handleButtonInteraction();
-            }
         }
 
         void ButtonView::render()
@@ -42,15 +40,13 @@ namespace UI
 
         void ButtonView::handleButtonInteraction()
         {
-            sf::Vector2f mouse_position = sf::Vector2f(sf::Mouse::getPosition(*game_window));
+            Vector2f mouse_position = Vector2f(Mouse::getPosition(*game_window));
 
             if (clickedButton(&image_sprite, mouse_position))
-            {
                 if (callback_function) callback_function();
-            }
         }
 
-        bool ButtonView::clickedButton(sf::Sprite* button_sprite, sf::Vector2f mouse_position)
+        bool ButtonView::clickedButton(Sprite* button_sprite, Vector2f mouse_position)
         {
             return ServiceLocator::getInstance()->getEventService()->pressedLeftMouseButton() &&
                 button_sprite->getGlobalBounds().contains(mouse_position);

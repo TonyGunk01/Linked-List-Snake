@@ -2,9 +2,12 @@
 
 #include "Level/LevelService.h"
 #include "Element/ElementData.h"
+#include <vector>
 
 namespace Level
 {
+	using namespace std;
+
     struct LevelData
     {
         LevelData(LevelNumber ind, vector<Element::ElementData>* data_list)

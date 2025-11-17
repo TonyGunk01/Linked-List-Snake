@@ -4,8 +4,8 @@
 namespace Global
 {
 	using namespace Graphics;
-	using namespace Event;
-	using namespace Sound;
+	using namespace Events;
+	using namespace Sounds;
 	using namespace UI;
 	using namespace Time;
 	using namespace Level;
@@ -37,22 +37,22 @@ namespace Global
 		event_service = new EventService();
 		graphic_service = new GraphicService();
 		sound_service = new SoundService();
+		level_service = new LevelService();
+		element_service = new ElementService();
+		player_service = new PlayerService();
 		ui_service = new UIService();
 		time_service = new TimeService();
-		level_service = new LevelService();
-		player_service = new PlayerService();
-		element_service = new ElementService();
 	}
 
 	void ServiceLocator::initialize()
 	{
-		event_service->initialize();
 		graphic_service->initialize();
 		sound_service->initialize();
+		event_service->initialize();
 		level_service->initialize();
+		element_service->initialize();
 		player_service->initialize();
 		ui_service->initialize();
-		element_service->initialize();
 		time_service->initialize();
 	}
 
@@ -79,8 +79,8 @@ namespace Global
 		if (GameService::getGameState() == GameState::GAMEPLAY)
 		{
 			level_service->render();
-			player_service->render();
 			element_service->render();
+			player_service->render();
 		}
 
 		ui_service->render();

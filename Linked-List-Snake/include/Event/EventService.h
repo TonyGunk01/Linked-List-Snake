@@ -1,8 +1,9 @@
 #pragma once
+
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Event.hpp>
 
-namespace Event
+namespace Events
 {
 	using namespace sf;
 
