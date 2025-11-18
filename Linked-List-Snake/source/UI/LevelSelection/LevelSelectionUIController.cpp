@@ -1,14 +1,12 @@
-#include "../../../include/UI/LevelSelection/LevelSelectionUIController.h"
-#include "../../../include/Main/GameService.h"
-#include "../../../include/Graphics/GraphicService.h"
-#include "../../../include/Sound/SoundService.h"
-#include "../../../include/Event/EventService.h"
-#include "../../../include/UI/UIElement/ButtonView.h"
-#include "../../../include/UI/UIElement/ImageView.h"
+#include "UI/LevelSelection/LevelSelectionUIController.h"
+#include "Main/GameService.h"
+#include "Graphics/GraphicService.h"
+#include "Sound/SoundService.h"
+#include "Event/EventService.h"
+#include "UI/UIElement/ButtonView.h"
+#include "UI/UIElement/ImageView.h"
 #include "Global/Config.h"
-#include "Global/ServiceLocator.h"
-#include "../../../include/Level/LevelService.h"
-#include "../../../include/Level/LevelNumber.h"
+#include "Level/LevelService.h"
 
 namespace UI
 {
@@ -17,9 +15,6 @@ namespace UI
     using namespace Event;
     using namespace Sound;
     using namespace Main;
-    using namespace sf;
-
-    enum class LevelNumber;
 
     namespace LevelSelection
     {
@@ -55,9 +50,9 @@ namespace UI
 
         void LevelSelectionUIController::initializeBackgroundImage()
         {
-            RenderWindow* game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
+            sf::RenderWindow* game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
 
-            background_image->initialize(Config::background_texture_path, game_window->getSize().x, game_window->getSize().y, Vector2f(0, 0));
+            background_image->initialize(Config::background_texture_path, game_window->getSize().x, game_window->getSize().y, sf::Vector2f(0, 0));
             background_image->setImageAlpha(background_alpha);
         }
 
@@ -65,9 +60,9 @@ namespace UI
         {
             float x_position = calculateLeftOffsetForButton();
 
-            level_one_button->initialize("Level One Button", Config::level_one_button_texture_path, button_width, button_height, Vector2f(x_position, level_one_button_y_position));
-            level_two_button->initialize("Level Two Button", Config::level_two_button_texture_path, button_width, button_height, Vector2f(x_position, level_two_button_y_position));
-            menu_button->initialize("Menu Button", Config::menu_button_texture_path, button_width, button_height, Vector2f(x_position, menu_button_y_position));
+            level_one_button->initialize("Level One Button", Config::level_one_button_texture_path, button_width, button_height, sf::Vector2f(x_position, level_one_button_y_position));
+            level_two_button->initialize("Level Two Button", Config::level_two_button_texture_path, button_width, button_height, sf::Vector2f(x_position, level_two_button_y_position));
+            menu_button->initialize("Menu Button", Config::menu_button_texture_path, button_width, button_height, sf::Vector2f(x_position, menu_button_y_position));
         }
 
         void LevelSelectionUIController::registerButtonCallback()
@@ -79,7 +74,7 @@ namespace UI
 
         float LevelSelectionUIController::calculateLeftOffsetForButton()
         {
-            RenderWindow* game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
+            sf::RenderWindow* game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
             return (static_cast<float>(game_window->getSize().x) / 2) - button_width / 2;
         }
 

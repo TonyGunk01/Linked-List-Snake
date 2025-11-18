@@ -1,43 +1,48 @@
 #pragma once
-
 #include "Graphics/GraphicService.h"
 #include "Event/EventService.h"
 #include "UI/UIService.h"
 #include "Sound/SoundService.h"
-#include "Time/TimeService.h"
 #include "Level/LevelService.h"
+#include "Element/ElementService.h"
+#include "Time/TimeService.h"
+#include "Player/PlayerService.h"
 
 namespace Global
 {
     class ServiceLocator
     {
-        private:
-            Event::EventService* event_service;
-            Graphics::GraphicService* graphic_service;
-            Sound::SoundService* sound_service;
-            UI::UIService* ui_service;
-            Time::TimeService* time_service;
-            Level::LevelService* level_service;
+    private:
+        Event::EventService* event_service;
+        Graphics::GraphicService* graphic_service;
+        Sound::SoundService* sound_service;
+        Level::LevelService* level_service;
+        Element::ElementService* element_service;
+        Player::PlayerService* player_service;
+        UI::UIService* ui_service;
+        Time::TimeService* time_service;
 
-            ServiceLocator();
-            ~ServiceLocator();
+        ServiceLocator();
+        ~ServiceLocator();
 
-            void createServices();
-            void clearAllServices();
+        void createServices();
+        void clearAllServices();
 
-        public:
-            static ServiceLocator* getInstance();
+    public:
+        static ServiceLocator* getInstance();
 
-            void initialize();
-            void update();
-            void render();
+        void initialize();
+        void update();
+        void render();
 
-            Event::EventService* getEventService();
-            Graphics::GraphicService* getGraphicService();
-            Sound::SoundService* getSoundService();
-            UI::UIService* getUIService();
-            Time::TimeService* getTimeService();
-            Level::LevelService* getLevelService();
-            void deleteServiceLocator();
+        Event::EventService* getEventService();
+        Graphics::GraphicService* getGraphicService();
+        Sound::SoundService* getSoundService();
+        Level::LevelService* getLevelService();
+        Element::ElementService* getElementService();
+        Player::PlayerService* getPlayerService();
+        UI::UIService* getUIService();
+        Time::TimeService* getTimeService();
+        void deleteServiceLocator();
     };
 }

@@ -74,12 +74,13 @@ namespace UI
         void MainMenuUIController::playButtonCallback()
         {
             ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::BUTTON_CLICK);
+            GameService::setGameState(GameState::LEVEL_SELECTION);
         }
 
         void MainMenuUIController::instructionsButtonCallback()
         {
             ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::BUTTON_CLICK);
-            GameService::setGameState(GameState::LEVEL_SELECTION);
+            GameService::setGameState(GameState::INSTRUCTIONS);
         }
 
         void MainMenuUIController::quitButtonCallback()
@@ -113,10 +114,10 @@ namespace UI
 
         void MainMenuUIController::destroy()
         {
-            delete play_button;
-            delete instructions_button;
-            delete quit_button;
-            delete background_image;
+            delete (play_button);
+            delete (instructions_button);
+            delete (quit_button);
+            delete (background_image);
         }
     }
 }
