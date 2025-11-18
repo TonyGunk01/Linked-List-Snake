@@ -12,8 +12,8 @@ namespace Level
 
 	void LevelModel::initialize(int width, int height)
 	{
-		cell_width = static_cast<float>(width) / number_of_columns;
-		cell_height = static_cast<float>(height) / number_of_rows;
+		cell_width = static_cast<float>(width) / static_cast<float>(number_of_columns);
+		cell_height = static_cast<float>(height) / static_cast<float>(number_of_rows);
 
 		initializeLevelData();
 	}
@@ -24,7 +24,7 @@ namespace Level
 		level_configurations.push_back(LevelData(Level::LevelNumber::TWO, &level_two_element_list));
 	}
 
-	vector<ElementData>& LevelModel::getElementDataList(int level_to_load)
+	const std::vector<ElementData>& LevelModel::getElementDataList(int level_to_load)
 	{
 		return *level_configurations[level_to_load].element_data_list;
 	}

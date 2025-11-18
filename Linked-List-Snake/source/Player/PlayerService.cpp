@@ -25,14 +25,14 @@ namespace Player
 		snake_controller->initialize();
 	}
 
-	void PlayerService::render()
-	{
-		snake_controller->render();
-	}
-
 	void PlayerService::update()
 	{
 		snake_controller->update();
+	}
+
+	void PlayerService::render()
+	{
+		snake_controller->render();
 	}
 
 	void PlayerService::spawnPlayer()
@@ -42,6 +42,6 @@ namespace Player
 
 	void PlayerService::destroy()
 	{
-		delete snake_controller;
+		delete (snake_controller);
 	}
 }

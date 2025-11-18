@@ -1,5 +1,4 @@
 #pragma once
-
 namespace Level
 {
     enum class LevelNumber
@@ -8,4 +7,3 @@ namespace Level
         TWO,
     };
 }
-

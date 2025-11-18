@@ -1,50 +1,44 @@
 #pragma once
-
+#include <SFML/Graphics.hpp>
 #include "UI/UIElement/ImageView.h"
-#include "Player/Direction.h"
+#include "Direction.h"
 
 namespace Player
 {
-	using namespace UI::UIElement;
-	using namespace sf;
-
 	class BodyPart
 	{
-		protected:
-			ImageView* bodypart_image;
+	protected:
+		UI::UIElement::ImageView* bodypart_image;
 
-			Vector2i grid_position;
-			Direction direction;
+		sf::Vector2i grid_position;
+		Direction direction;
 
-			float bodypart_width;
-			float bodypart_height;
+		float bodypart_width;
+		float bodypart_height;
 
-			void createBodyPartImage();
-			void initializeBodyPartImage();
-			void destroy();
+		void createBodyPartImage();
+		void initializeBodyPartImage();
+		sf::Vector2f getBodyPartScreenPosition();
+		float getRotationAngle();
 
-			Vector2f getBodyPartScreenPosition();
-			float getRotationAngle();
+		sf::Vector2i getNextPositionUp();
+		sf::Vector2i getNextPositionDown();
+		sf::Vector2i getNextPositionLeft();
+		sf::Vector2i getNextPositionRight();
 
-			Vector2i getNextPositionUp();
-			Vector2i getNextPositionDown();
-			Vector2i getNextPositionLeft();
-			Vector2i getNextPositionRight();
+		void destroy();
 
-		public:
-			BodyPart();
-			~BodyPart();
+	public:
+		BodyPart();
+		~BodyPart();
 
-			void initialize(float width, float height, Vector2i pos, Direction dir);
-			void render();
-			void update();
+		void initialize(float width, float height, sf::Vector2i pos, Direction dir);
+		void updatePosition();
+		void render();
 
-			void setDirection(Direction direction);
-			void updatePosition();
-
-			Direction getDirection();
-			void setPosition(Vector2i position);
-			Vector2i getPosition();
-			Vector2i getNextPosition();
+		Direction getDirection();
+		void setDirection(Direction new_direction);
+		sf::Vector2i getPosition();
+		sf::Vector2i getNextPosition();
 	};
 }

@@ -1,17 +1,18 @@
 #include "Player/BodyPart.h"
-#include "Level/LevelView.h"
-#include "Global/Config.h"
-#include "Level/LevelModel.h"
 #include "Global/ServiceLocator.h"
+#include "Level/LevelView.h"
+#include "Level/LevelModel.h"
+#include "Global/Config.h"
 
 namespace Player
 {
 	using namespace Global;
 	using namespace Level;
+	using namespace UI::UIElement;
 
 	BodyPart::BodyPart()
 	{
-		grid_position = Vector2i(0, 0);
+		grid_position = sf::Vector2i(0, 0);
 		createBodyPartImage();
 	}
 
@@ -20,7 +21,7 @@ namespace Player
 		destroy();
 	}
 
-	void BodyPart::initialize(float width, float height, Vector2i pos, Direction dir)
+	void BodyPart::initialize(float width, float height, sf::Vector2i pos, Direction dir)
 	{
 		bodypart_width = width;
 		bodypart_height = height;
@@ -28,11 +29,6 @@ namespace Player
 		grid_position = pos;
 
 		initializeBodyPartImage();
-	}
-
-	void BodyPart::render()
-	{
-		bodypart_image->render();
 	}
 
 	void BodyPart::createBodyPartImage()
@@ -46,29 +42,77 @@ namespace Player
 		bodypart_image->setOriginAtCentre();
 	}
 
-	Vector2f BodyPart::getBodyPartScreenPosition()
+	void BodyPart::updatePosition()
+	{
+		grid_position = getNextPosition();
+
+		bodypart_image->setPosition(getBodyPartScreenPosition());
+		bodypart_image->setRotation(getRotationAngle());
+		bodypart_image->update();
+	}
+
+	sf::Vector2f BodyPart::getBodyPartScreenPosition()
 	{
 		float x_screen_position = LevelView::border_offset_left + (grid_position.x * bodypart_width) + (bodypart_width / 2);
 		float y_screen_position = LevelView::border_offset_top + (grid_position.y * bodypart_height) + (bodypart_height / 2);
 
-		return Vector2f(x_screen_position, y_screen_position);
+		return sf::Vector2f(x_screen_position, y_screen_position);
+	}
+
+	void BodyPart::render()
+	{
+		bodypart_image->render();
+	}
+
+	sf::Vector2i BodyPart::getNextPosition()
+	{
+		switch (direction)
+		{
+		case Direction::UP:
+			return getNextPositionUp();
+		case Direction::DOWN:
+			return getNextPositionDown();
+		case Direction::RIGHT:
+			return getNextPositionRight();
+		case Direction::LEFT:
+			return getNextPositionLeft();
+		default:
+			return grid_position;
+		}
+	}
+
+	sf::Vector2i BodyPart::getNextPositionDown()
+	{
+		return sf::Vector2i(grid_position.x, (grid_position.y + 1) % (LevelModel::number_of_rows));
+	}
+
+	sf::Vector2i BodyPart::getNextPositionUp()
+	{
+		return sf::Vector2i(grid_position.x, (grid_position.y - 1 + (LevelModel::number_of_rows)) % (LevelModel::number_of_rows));
+	}
+
+	sf::Vector2i BodyPart::getNextPositionRight()
+	{
+		return sf::Vector2i((grid_position.x + 1) % (LevelModel::number_of_columns), grid_position.y);
+	}
+
+	sf::Vector2i BodyPart::getNextPositionLeft()
+	{
+		return sf::Vector2i((grid_position.x - 1 + LevelModel::number_of_columns) % (LevelModel::number_of_columns), grid_position.y);
 	}
 
 	float BodyPart::getRotationAngle()
 	{
 		switch (direction)
 		{
-			case Direction::UP:
-				return 270.f;
-
-			case Direction::DOWN:
-				return 90.f;
-
-			case Direction::RIGHT:
-				return 0;
-
-			case Direction::LEFT:
-				return 180.f;
+		case Direction::UP:
+			return 270.f;
+		case Direction::DOWN:
+			return 90.f;
+		case Direction::RIGHT:
+			return 0;
+		case Direction::LEFT:
+			return 180.f;
 		}
 	}
 
@@ -77,71 +121,18 @@ namespace Player
 		return direction;
 	}
 
-	void BodyPart::setDirection(Direction direction)
+	void BodyPart::setDirection(Direction new_direction)
 	{
-		this->direction = direction;
+		direction = new_direction;
 	}
 
-	Vector2i BodyPart::getPosition()
+	sf::Vector2i BodyPart::getPosition()
 	{
 		return grid_position;
 	}
 
-	void BodyPart::updatePosition()
-	{
-		bodypart_image->setPosition(getBodyPartScreenPosition());
-		bodypart_image->setRotation(getRotationAngle());
-		bodypart_image->update();
-	}
-
-	Vector2i BodyPart::getNextPosition()
-	{
-		switch (direction)
-		{
-			case Direction::UP:
-				return getNextPositionUp();
-
-			case Direction::DOWN:
-				return getNextPositionDown();
-
-			case Direction::RIGHT:
-				return getNextPositionRight();
-
-			case Direction::LEFT:
-				return getNextPositionLeft();
-
-			default:
-				return grid_position;
-		}
-	}
-
-	Vector2i BodyPart::getNextPositionDown()
-	{
-		return Vector2i(grid_position.x, (grid_position.y + 1) % (LevelModel::number_of_rows));
-	}
-
-	Vector2i BodyPart::getNextPositionUp()
-	{
-		return Vector2i(grid_position.x, (grid_position.y - 1 + (LevelModel::number_of_rows)) % (LevelModel::number_of_rows));
-	}
-
-	Vector2i BodyPart::getNextPositionRight()
-	{
-		return Vector2i((grid_position.x + 1) % (LevelModel::number_of_columns), grid_position.y);
-	}
-
-	Vector2i BodyPart::getNextPositionLeft()
-	{
-		return Vector2i((grid_position.x - 1 + LevelModel::number_of_columns) % (LevelModel::number_of_columns), grid_position.y);
-	}
-
-	void BodyPart::setPosition(Vector2i position)
-	{
-		grid_position = position;
-	}
-
 	void BodyPart::destroy()
 	{
-		delete bodypart_image;
+		delete (bodypart_image);
 	}
 }
