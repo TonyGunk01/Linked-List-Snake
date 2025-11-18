@@ -68,16 +68,20 @@ namespace Player
 	{
 		switch (direction)
 		{
-		case Direction::UP:
-			return getNextPositionUp();
-		case Direction::DOWN:
-			return getNextPositionDown();
-		case Direction::RIGHT:
-			return getNextPositionRight();
-		case Direction::LEFT:
-			return getNextPositionLeft();
-		default:
-			return grid_position;
+			case Direction::UP:
+				return getNextPositionUp();
+
+			case Direction::DOWN:
+				return getNextPositionDown();
+
+			case Direction::RIGHT:
+				return getNextPositionRight();
+
+			case Direction::LEFT:
+				return getNextPositionLeft();
+
+			default:
+				return grid_position;
 		}
 	}
 
@@ -105,14 +109,17 @@ namespace Player
 	{
 		switch (direction)
 		{
-		case Direction::UP:
-			return 270.f;
-		case Direction::DOWN:
-			return 90.f;
-		case Direction::RIGHT:
-			return 0;
-		case Direction::LEFT:
-			return 180.f;
+			case Direction::UP:
+				return 270.0f;
+
+			case Direction::DOWN:
+				return 90.0f;
+
+			case Direction::RIGHT:
+				return 0.0f;
+
+			case Direction::LEFT:
+				return 180.0f;
 		}
 	}
 
@@ -133,6 +140,6 @@ namespace Player
 
 	void BodyPart::destroy()
 	{
-		delete (bodypart_image);
+		delete bodypart_image;
 	}
 }

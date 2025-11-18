@@ -65,9 +65,7 @@ namespace LinkedList
 		while (cur_node != nullptr)
 		{
 			if (cur_node->body_part.getNextPosition() == predicted_position)
-			{
 				return true;
-			}
 
 			cur_node = cur_node->next;
 		}
@@ -80,7 +78,7 @@ namespace LinkedList
 		Node* new_node = createNode();
 		Node* cur_node = head_node;
 
-		if (cur_node == nullptr) //If there is no head, then create a new head node
+		if (cur_node == nullptr)
 		{
 			head_node = new_node;
 			new_node->body_part.initialize(node_width, node_height, default_position, default_direction);
@@ -110,9 +108,7 @@ namespace LinkedList
 		if (head_node == nullptr) return;
 
 		while (head_node != nullptr)
-		{
 			removeNodeAtHead();
-		}
 	}
 
 	Node* SingleLinkedList::createNode()
@@ -127,21 +123,39 @@ namespace LinkedList
 
 		switch (reference_direction)
 		{
-		case Direction::UP:
-			return sf::Vector2i(reference_position.x, reference_position.y - 1);
-			break;
-		case Direction::DOWN:
-			return sf::Vector2i(reference_position.x, reference_position.y + 1);
-			break;
-		case Direction::LEFT:
-			return sf::Vector2i(reference_position.x + 1, reference_position.y);
-			break;
-		case Direction::RIGHT:
-			return sf::Vector2i(reference_position.x - 1, reference_position.y);
-			break;
+			case Direction::UP:
+				return sf::Vector2i(reference_position.x, reference_position.y - 1);
+				break;
+
+			case Direction::DOWN:
+				return sf::Vector2i(reference_position.x, reference_position.y + 1);
+				break;
+
+			case Direction::LEFT:
+				return sf::Vector2i(reference_position.x + 1, reference_position.y);
+				break;
+
+			case Direction::RIGHT:
+				return sf::Vector2i(reference_position.x - 1, reference_position.y);
+				break;
 		}
 
 		return default_position;
+	}
+
+	std::vector<sf::Vector2i> SingleLinkedList::getNodesPositionList()
+	{
+		std::vector<sf::Vector2i> nodes_position_list;
+
+		Node* cur_node = head_node;
+
+		while (cur_node != nullptr)
+		{
+			nodes_position_list.push_back(cur_node->body_part.getPosition());
+			cur_node = cur_node->next;
+		}
+
+		return nodes_position_list;
 	}
 
 	Node* SingleLinkedList::getHeadNode()

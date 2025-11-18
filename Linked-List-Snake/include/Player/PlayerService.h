@@ -12,6 +12,8 @@ namespace Player
 		void createController();
 		void destroy();
 
+		std::vector<sf::Vector2i> getCurrentSnakePositionList();
+
 	public:
 		PlayerService();
 		~PlayerService();
