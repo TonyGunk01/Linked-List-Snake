@@ -52,7 +52,7 @@ namespace LinkedList
 			cur_node = cur_node->next;
 
 		cur_node->next = new_node;
-		new_node->body_part.initialize(node_width, node_height, default_position, default_direction);
+		new_node->body_part.initialize(node_width, node_height, getNewNodePosition(cur_node), cur_node->body_part.getDirection());
 	}
 
 	void SingleLinkedList::updateNodeDirection(Direction direction_to_set)

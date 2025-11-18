@@ -148,7 +148,7 @@ namespace Player
 
 		if (elapsed_duration >= movement_frame_duration)
 		{
-			elapsed_duration = 0.f;
+			elapsed_duration = 0.0f;
 			updateSnakeDirection();
 			processSnakeCollision();
 			

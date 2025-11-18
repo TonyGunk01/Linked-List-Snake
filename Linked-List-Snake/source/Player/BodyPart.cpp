@@ -122,7 +122,7 @@ namespace Player
 
 	Vector2i BodyPart::getNextPositionUp()
 	{
-		return Vector2i(grid_position.x, (grid_position.y - 1) + (LevelModel::number_of_rows) % (LevelModel::number_of_rows));
+		return Vector2i(grid_position.x, (grid_position.y - 1 + (LevelModel::number_of_rows)) % (LevelModel::number_of_rows));
 	}
 
 	Vector2i BodyPart::getNextPositionRight()
