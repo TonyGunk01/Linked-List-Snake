@@ -118,8 +118,28 @@ namespace Player
 
 	void SnakeController::processSnakeCollision()
 	{
+		processBodyCollision();
+		processElementsCollision();
+		processFoodCollision();
+	}
+
+	void SnakeController::processBodyCollision()
+	{
 		if (single_linked_list->processNodeCollision())
+		{
 			current_snake_state = SnakeState::DEAD;
+			ServiceLocator::getInstance()->getSoundService()->playSound(Sound::SoundType::DEATH);
+		}
+	}
+
+	void SnakeController::processElementsCollision()
+	{
+		
+	}
+
+	void SnakeController::processFoodCollision()
+	{
+		
 	}
 
 	void SnakeController::handleRestart()

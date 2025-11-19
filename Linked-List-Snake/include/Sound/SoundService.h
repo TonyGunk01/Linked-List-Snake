@@ -7,6 +7,8 @@ namespace Sound
 	enum class SoundType
 	{
 		BUTTON_CLICK,
+		PICKUP,
+		DEATH,
 	};
 
 	class SoundService
