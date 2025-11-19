@@ -31,7 +31,7 @@ namespace Graphics
 
 	void GraphicService::onDestroy()
 	{
-		delete(game_window);
+		delete game_window;
 	}
 
 	void GraphicService::setFrameRate(int frame_rate_to_set)

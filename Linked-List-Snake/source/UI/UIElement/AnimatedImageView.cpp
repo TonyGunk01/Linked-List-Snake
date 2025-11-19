@@ -53,21 +53,20 @@ namespace UI
         void AnimatedImageView::handleAnimationProgress()
         {
             if (elapsed_duration >= animation_duration && callback_function)
-            {
                 callback_function();
-            }
         }
 
         void AnimatedImageView::updateAnimation()
         {
             switch (animation_type)
             {
-            case AnimationType::FADE_IN:
-                fadeIn();
-                break;
-            case AnimationType::FADE_OUT:
-                fadeOut();
-                break;
+                case AnimationType::FADE_IN:
+                    fadeIn();
+                    break;
+
+                case AnimationType::FADE_OUT:
+                    fadeOut();
+                    break;
             }
         }
 
