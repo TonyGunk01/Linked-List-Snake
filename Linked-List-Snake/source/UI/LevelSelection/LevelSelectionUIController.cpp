@@ -124,10 +124,10 @@ namespace UI
 
         void LevelSelectionUIController::destroy()
         {
-            delete (background_image);
-            delete (level_one_button);
-            delete (level_two_button);
-            delete (menu_button);
+            delete background_image;
+            delete level_one_button;
+            delete level_two_button;
+            delete menu_button;
         }
     }
 }

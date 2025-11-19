@@ -29,9 +29,7 @@ namespace UI
 			UIView::render();
 
 			if (ui_state == UIState::VISIBLE)
-			{
 				game_window->draw(rectangle_shape);
-			}
 		}
 
 		void RectangleShapeView::setSize(sf::Vector2f rectangle_size)
@@ -58,6 +56,5 @@ namespace UI
 		{
 			rectangle_shape.setOutlineThickness(outline_thickness);
 		}
-
 	}
 }

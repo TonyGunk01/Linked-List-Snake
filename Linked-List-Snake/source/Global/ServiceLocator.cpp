@@ -29,7 +29,10 @@ namespace Global
 		createServices();
 	}
 
-	ServiceLocator::~ServiceLocator() { clearAllServices(); }
+	ServiceLocator::~ServiceLocator() 
+	{ 
+		clearAllServices(); 
+	}
 
 	void ServiceLocator::createServices()
 	{

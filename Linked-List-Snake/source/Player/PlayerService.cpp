@@ -6,7 +6,6 @@ namespace Player
 	PlayerService::PlayerService()
 	{
 		snake_controller = nullptr;
-
 		createController();
 	}
 
@@ -47,6 +46,6 @@ namespace Player
 
 	void PlayerService::destroy()
 	{
-		delete (snake_controller);
+		delete snake_controller;
 	}
 }

@@ -57,7 +57,8 @@ namespace LinkedList
 
 	bool SingleLinkedList::processNodeCollision()
 	{
-		if (head_node == nullptr) return false;
+		if (head_node == nullptr) 
+			return false;
 
 		sf::Vector2i predicted_position = head_node->body_part.getNextPosition();
 
@@ -100,7 +101,7 @@ namespace LinkedList
 		head_node = head_node->next;
 
 		cur_node->next = nullptr;
-		delete (cur_node);
+		delete cur_node;
 	}
 
 	void SingleLinkedList::removeAllNodes()

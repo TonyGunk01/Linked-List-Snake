@@ -1,4 +1,5 @@
 #pragma once
+
 #include <SFML/System/Vector2.hpp>
 #include "LinkedList/Node.h"
 
@@ -18,8 +19,6 @@ namespace LinkedList
 			Node* createNode();
 			sf::Vector2i getNewNodePosition(Node* reference_node);
 
-			std::vector<sf::Vector2i> getNodesPositionList();
-
 		public:
 			SingleLinkedList();
 			~SingleLinkedList();
@@ -35,5 +34,7 @@ namespace LinkedList
 
 			bool processNodeCollision();
 			Node* getHeadNode();
+
+			std::vector<sf::Vector2i> getNodesPositionList();
 	};
 }

@@ -1,4 +1,5 @@
 #pragma once
+
 #include <SFML/System/Vector2.hpp>
 #include "LinkedList/Node.h"
 #include "LinkedList/SingleLinkedList.h"
@@ -45,7 +46,6 @@ namespace Player
 			void reset();
 			void destroy();
 			
-			std::vector<sf::Vector2i> getCurrentSnakePositionList();
 
 		public:
 			SnakeController();
@@ -59,5 +59,7 @@ namespace Player
 			void respawnSnake();
 			void setSnakeState(SnakeState state);
 			SnakeState getSnakeState();
+
+			std::vector<sf::Vector2i> getCurrentSnakePositionList();
 	};
 }
