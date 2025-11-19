@@ -29,6 +29,8 @@ namespace LinkedList
 			void insertNodeAtHead();
 			void insertNodeAtTail();
 			void removeNodeAtHead();
+			void insertNodeAtIndex(int index);
+			void removeNodeAtIndex(int index);
 			void removeAllNodes();
 			void updateNodePosition();
 			void updateNodeDirection(Direction direction_to_set);
