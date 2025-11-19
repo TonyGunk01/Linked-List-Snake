@@ -63,5 +63,6 @@ namespace Player
 			SnakeState getSnakeState();
 
 			std::vector<sf::Vector2i> getCurrentSnakePositionList();
+			void OnFoodCollected(LinkedList::Node* head_node, Food::FoodType food_type);
 	};
 }
