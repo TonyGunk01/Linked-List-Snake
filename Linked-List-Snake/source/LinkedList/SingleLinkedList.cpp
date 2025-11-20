@@ -281,4 +281,48 @@ namespace LinkedList
 	{
 		return head_node;
 	}
+
+	Node* SingleLinkedList::findNodeAtIndex(int index)
+	{
+		if (index < 0 || index >= linked_list_size) 
+			return nullptr;
+
+		int current_index = 0;
+		Node* cur_node = head_node;
+
+		while (cur_node != nullptr)
+		{
+			if (current_index == index)
+				return cur_node;
+
+			cur_node = cur_node->next;
+			current_index++;
+		}
+
+		return nullptr;
+	}
+
+	void SingleLinkedList::removeHalfNodes()
+	{
+		if (linked_list_size <= 1) 
+			return;
+
+		int half_length = linked_list_size / 2;
+		int new_tail_index = half_length - 1;
+
+		Node* prev_node = findNodeAtIndex(new_tail_index);
+		Node* cur_node = prev_node->next;
+
+		while (cur_node != nullptr)
+		{
+			Node* node_to_delete = cur_node;
+			cur_node = cur_node->next;
+
+			delete (node_to_delete);
+			linked_list_size--;
+		}
+
+		prev_node->next = nullptr;
+	}
+
 }
