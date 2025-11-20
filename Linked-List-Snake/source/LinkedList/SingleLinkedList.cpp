@@ -143,6 +143,28 @@ namespace LinkedList
 
 	}
 
+	void SingleLinkedList::removeNodeAtTail()
+	{
+		if (head_node == nullptr) return;
+		linked_list_size--; 
+
+		Node* cur_node = head_node;
+
+		if (cur_node->next == nullptr) 
+		{
+			removeNodeAtHead();
+			return;
+		}
+
+		while (cur_node->next->next != nullptr)
+		{
+			cur_node = cur_node->next;
+		}
+
+		delete (cur_node->next);
+		cur_node->next = nullptr;
+	}
+
 	void SingleLinkedList::shiftNodesAfterInsertion(Node* new_node, Node* cur_node, Node* prev_node)
 	{
 		Node* next_node = cur_node;
