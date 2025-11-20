@@ -15,6 +15,8 @@ namespace LinkedList
 
 			sf::Vector2i default_position;
 			Direction default_direction;
+			Direction current_direction;
+			int linked_list_size = 0;
 
 			Node* createNode();
 			sf::Vector2i getNewNodePosition(Node* reference_node, Operation operation);
@@ -45,5 +47,8 @@ namespace LinkedList
 			void initializeNode(Node* new_node, Node* reference_node, Operation operation);
 			Node* findNodeAtIndex(int index);
 			void removeHalfNodes();
+			void reverseNodeDirections();
+
+			Direction reverse();
 	};
 }
