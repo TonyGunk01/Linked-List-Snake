@@ -17,7 +17,7 @@ namespace Food
 
 	FoodItem::~FoodItem()
 	{
-		delete food_image;
+		delete (food_image);
 	}
 
 	void FoodItem::initialize(sf::Vector2i grid_pos, float width, float height, FoodType type)
@@ -43,29 +43,29 @@ namespace Food
 	{
 		switch (food_type)
 		{
-			case Food::FoodType::APPLE:
-				return Config::apple_texture_path;
+		case Food::FoodType::APPLE:
+			return Config::apple_texture_path;
 
-			case Food::FoodType::MANGO:
-				return Config::mango_texture_path;
+		case Food::FoodType::MANGO:
+			return Config::mango_texture_path;
 
-			case Food::FoodType::ORANGE:
-				return Config::orange_texture_path;
+		case Food::FoodType::ORANGE:
+			return Config::orange_texture_path;
 
-			case Food::FoodType::PIZZA:
-				return Config::pizza_texture_path;
+		case Food::FoodType::PIZZA:
+			return Config::pizza_texture_path;
 
-			case Food::FoodType::BURGER:
-				return Config::burger_texture_path;
+		case Food::FoodType::BURGER:
+			return Config::burger_texture_path;
 
-			case Food::FoodType::CHEESE:
-				return Config::cheese_texture_path;
+		case Food::FoodType::CHEESE:
+			return Config::cheese_texture_path;
 
-			case Food::FoodType::POISON:
-				return Config::poision_texture_path;
+		case Food::FoodType::POISION:
+			return Config::poision_texture_path;
 
-			case Food::FoodType::ALCOHOL:
-				return Config::alcohol_texture_path;
+		case Food::FoodType::ALCOHOL:
+			return Config::alcohol_texture_path;
 		}
 	}
 
@@ -82,6 +82,11 @@ namespace Food
 	FoodType FoodItem::getFoodType()
 	{
 		return food_type;
+	}
+
+	sf::Vector2i FoodItem::getFoodPosition()
+	{
+		return grid_position;
 	}
 
 	sf::Vector2f FoodItem::getFoodImagePosition()

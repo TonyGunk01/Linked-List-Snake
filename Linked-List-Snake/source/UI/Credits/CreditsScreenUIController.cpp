@@ -83,6 +83,7 @@ namespace UI
 
         void CreditsScreenUIController::menuButtonCallback()
         {
+            // GameState will change to gameplay state.
             ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::BUTTON_CLICK);
             GameService::setGameState(GameState::MAIN_MENU);
         }

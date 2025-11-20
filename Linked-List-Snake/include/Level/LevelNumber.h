@@ -1,5 +1,4 @@
 #pragma once
-
 namespace Level
 {
     enum class LevelNumber

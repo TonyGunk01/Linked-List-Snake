@@ -12,15 +12,9 @@ namespace Main
 
 	GameState GameService::current_state = GameState::BOOT;
 
-	GameService::GameService() 
-	{ 
-		service_locator = nullptr; 
-	}
+	GameService::GameService() { service_locator = nullptr; }
 
-	GameService::~GameService() 
-	{ 
-		destroy(); 
-	}
+	GameService::~GameService() { destroy(); }
 
 	void GameService::ignite()
 	{
@@ -35,10 +29,7 @@ namespace Main
 		showSplashScreen();
 	}
 
-	void GameService::initializeVariables() 
-	{ 
-		game_window = service_locator->getGraphicService()->getGameWindow(); 
-	}
+	void GameService::initializeVariables() { game_window = service_locator->getGraphicService()->getGameWindow(); }
 
 	void GameService::showSplashScreen()
 	{
@@ -46,14 +37,15 @@ namespace Main
 		ServiceLocator::getInstance()->getUIService()->showScreen();
 	}
 
-	bool GameService::isRunning() 
-	{ 
-		return service_locator->getGraphicService()->isGameWindowOpen(); 
-	}
+	bool GameService::isRunning() { return service_locator->getGraphicService()->isGameWindowOpen(); }
 
+	// Main Game Loop.
 	void GameService::update()
 	{
+		// Process Events.
 		service_locator->getEventService()->processEvents();
+
+		// Update Game Logic.
 		service_locator->update();
 	}
 
@@ -64,18 +56,9 @@ namespace Main
 		game_window->display();
 	}
 
-	void GameService::destroy() 
-	{ 
-		service_locator->deleteServiceLocator(); 
-	}
+	void GameService::destroy() { service_locator->deleteServiceLocator(); }
 
-	void GameService::setGameState(GameState new_state) 
-	{ 
-		current_state = new_state; 
-	}
+	void GameService::setGameState(GameState new_state) { current_state = new_state; }
 
-	GameState GameService::getGameState() 
-	{ 
-		return current_state; 
-	}
+	GameState GameService::getGameState() { return current_state; }
 }

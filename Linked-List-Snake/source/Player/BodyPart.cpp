@@ -68,22 +68,47 @@ namespace Player
 	{
 		switch (direction)
 		{
-			case Direction::UP:
-				return getNextPositionUp();
-
-			case Direction::DOWN:
-				return getNextPositionDown();
-
-			case Direction::RIGHT:
-				return getNextPositionRight();
-
-			case Direction::LEFT:
-				return getNextPositionLeft();
-
-			default:
-				return grid_position;
+		case Direction::UP:
+			return getNextPositionUp();
+		case Direction::DOWN:
+			return getNextPositionDown();
+		case Direction::RIGHT:
+			return getNextPositionRight();
+		case Direction::LEFT:
+			return getNextPositionLeft();
+		default:
+			return grid_position;
 		}
 	}
+
+	sf::Vector2i BodyPart::getPrevPosition()
+	{
+		switch (direction)
+		{
+		case Direction::UP:
+			return getNextPositionDown();
+		case Direction::DOWN:
+			return getNextPositionUp();
+		case Direction::RIGHT:
+			return getNextPositionLeft();
+		case Direction::LEFT:
+			return getNextPositionRight();
+		default:
+			return grid_position;
+		}
+	}
+
+	void BodyPart::setPosition(sf::Vector2i position)
+	{
+		grid_position = position;
+	}
+
+	void BodyPart::setDirection(Direction direction)
+	{
+		previous_direction = this->direction;
+		this->direction = direction;
+	}
+
 
 	sf::Vector2i BodyPart::getNextPositionDown()
 	{
@@ -109,17 +134,14 @@ namespace Player
 	{
 		switch (direction)
 		{
-			case Direction::UP:
-				return 270.0f;
-
-			case Direction::DOWN:
-				return 90.0f;
-
-			case Direction::RIGHT:
-				return 0.0f;
-
-			case Direction::LEFT:
-				return 180.0f;
+		case Direction::UP:
+			return 270.f;
+		case Direction::DOWN:
+			return 90.f;
+		case Direction::RIGHT:
+			return 0;
+		case Direction::LEFT:
+			return 180.f;
 		}
 	}
 
@@ -128,10 +150,9 @@ namespace Player
 		return direction;
 	}
 
-	void BodyPart::setDirection(Direction new_direction)
+	Direction BodyPart::getPreviousDirection()
 	{
-		previous_direction = this->direction;
-		this->direction = direction;
+		return previous_direction;
 	}
 
 	sf::Vector2i BodyPart::getPosition()
@@ -139,29 +160,8 @@ namespace Player
 		return grid_position;
 	}
 
-	sf::Vector2i BodyPart::getPrevPosition()
-	{
-		switch (direction)
-		{
-			case Direction::UP:
-				return getNextPositionDown();
-
-			case Direction::DOWN:
-				return getNextPositionUp();
-
-			case Direction::RIGHT:
-				return getNextPositionLeft();
-
-			case Direction::LEFT:
-				return getNextPositionRight();
-
-			default:
-				return grid_position;
-		}
-	}
-
 	void BodyPart::destroy()
 	{
-		delete bodypart_image;
+		delete (bodypart_image);
 	}
 }

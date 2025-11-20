@@ -114,10 +114,10 @@ namespace UI
 
         void MainMenuUIController::destroy()
         {
-            delete play_button;
-            delete instructions_button;
-            delete quit_button;
-            delete background_image;
+            delete (play_button);
+            delete (instructions_button);
+            delete (quit_button);
+            delete (background_image);
         }
     }
 }

@@ -96,18 +96,15 @@ namespace UI
 
             switch (time_complexity)
             {
-                case TimeComplexity::NONE:
-                    time_complexity_value = "";
-
-                case TimeComplexity::ONE:
-                    time_complexity_value = "1";
-                    break;
-
-                case TimeComplexity::N:
-                    time_complexity_value = "N";
-                    break;
+            case TimeComplexity::NONE:
+                time_complexity_value = "";
+            case TimeComplexity::ONE:
+                time_complexity_value = "1";
+                break;
+            case TimeComplexity::N:
+                time_complexity_value = "N";
+                break;
             }
-
             time_complexity_text->setText("Time Complexity : (" + time_complexity_value + ")");
             time_complexity_text->update();
         }
@@ -119,40 +116,33 @@ namespace UI
 
             switch (operation)
             {
-                case LinkedListOperations::NONE:
-                    operation_value = "";
+            case LinkedListOperations::NONE:
+                operation_value = "";
+            case LinkedListOperations::INSERT_AT_HEAD:
+                operation_value = "Insert at Head";
+                break;
+            case LinkedListOperations::INSERT_AT_TAIL:
+                operation_value = "Insert at Tail";
+                break;
+            case LinkedListOperations::INSERT_AT_MID:
+                operation_value = "Insert at Mid";
+                break;
+            case LinkedListOperations::REMOVE_AT_HEAD:
+                operation_value = "Remove at Head";
+                break;
+            case LinkedListOperations::REMOVE_AT_TAIL:
+                operation_value = "Remove at Tail";
+                break;
+            case LinkedListOperations::REMOVE_AT_MID:
+                operation_value = "Remove at Mid";
+                break;
+            case LinkedListOperations::DELETE_HALF_LIST:
+                operation_value = "Delete Half List";
+                break;
+            case LinkedListOperations::REVERSE_LIST:
+                operation_value = "Reverse List";
+                break;
 
-                case LinkedListOperations::INSERT_AT_HEAD:
-                    operation_value = "Insert at Head";
-                    break;
-
-                case LinkedListOperations::INSERT_AT_TAIL:
-                    operation_value = "Insert at Tail";
-                    break;
-
-                case LinkedListOperations::INSERT_AT_MID:
-                    operation_value = "Insert at Mid";
-                    break;
-
-                case LinkedListOperations::REMOVE_AT_HEAD:
-                    operation_value = "Remove at Head";
-                    break;
-
-                case LinkedListOperations::REMOVE_AT_TAIL:
-                    operation_value = "Remove at Tail";
-                    break;
-
-                case LinkedListOperations::REMOVE_AT_MID:
-                    operation_value = "Remove at Mid";
-                    break;
-
-                case LinkedListOperations::DELETE_HALF_LIST:
-                    operation_value = "Delete Half List";
-                    break;
-
-                case LinkedListOperations::REVERSE_LIST:
-                    operation_value = "Reverse List";
-                    break;
             }
 
             operation_text->setText("Last Operation : " + operation_value);
@@ -185,10 +175,10 @@ namespace UI
 
         void GameplayUIController::destroy()
         {
-            delete level_number_text;
-            delete score_text;
-            delete time_complexity_text;
-            delete operation_text;
+            delete (level_number_text);
+            delete (score_text);
+            delete (time_complexity_text);
+            delete (operation_text);
         }
     }
 }

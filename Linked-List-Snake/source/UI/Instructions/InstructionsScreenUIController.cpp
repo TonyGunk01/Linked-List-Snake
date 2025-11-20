@@ -100,7 +100,9 @@ namespace UI
             menu_button->update();
 
             for (int i = 0; i < instructions_text_list.size(); i++)
+            {
                 instructions_text_list[i]->update();
+            }
         }
 
         void InstructionsScreenUIController::render()
@@ -109,7 +111,9 @@ namespace UI
             menu_button->render();
 
             for (int i = 0; i < instructions_text_list.size(); i++)
+            {
                 instructions_text_list[i]->render();
+            }
         }
 
         void InstructionsScreenUIController::show()
@@ -118,7 +122,9 @@ namespace UI
             menu_button->show();
 
             for (int i = 0; i < instructions_text_list.size(); i++)
+            {
                 instructions_text_list[i]->show();
+            }
         }
 
         void InstructionsScreenUIController::destroy()
@@ -127,7 +133,9 @@ namespace UI
             delete (menu_button);
 
             for (int i = 0; i < instructions_text_list.size(); i++)
+            {
                 delete (instructions_text_list[i]);
+            }
         }
     }
 }

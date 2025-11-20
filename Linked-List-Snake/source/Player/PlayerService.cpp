@@ -6,6 +6,7 @@ namespace Player
 	PlayerService::PlayerService()
 	{
 		snake_controller = nullptr;
+
 		createController();
 	}
 
@@ -44,8 +45,38 @@ namespace Player
 		return snake_controller->getCurrentSnakePositionList();
 	}
 
+	int PlayerService::getSnakeSize()
+	{
+		return snake_controller->getSnakeSize();
+	}
+
+	int PlayerService::getPlayerScore()
+	{
+		return snake_controller->getPlayerScore();
+	}
+
+	TimeComplexity PlayerService::getTimeComplexity()
+	{
+		return snake_controller->getTimeComplexity();
+	}
+
+	LinkedListOperations PlayerService::getLastOperation()
+	{
+		return snake_controller->getLastOperation();
+	}
+
+	SnakeState PlayerService::getSnakeState()
+	{
+		return snake_controller->getSnakeState();
+	}
+
+	bool PlayerService::isSnakeSizeMinimum()
+	{
+		return snake_controller->isSnakeSizeMinimum();
+	}
+
 	void PlayerService::destroy()
 	{
-		delete snake_controller;
+		delete (snake_controller);
 	}
 }
