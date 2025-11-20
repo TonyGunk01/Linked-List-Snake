@@ -31,6 +31,7 @@ namespace LinkedList
 			void insertNodeAtHead();
 			void insertNodeAtTail();
 			void removeNodeAtHead();
+			void removeNodeAtMiddle();
 			void removeNodeAtTail();
 			void insertNodeAt(int index);
 			void removeNodeAt(int index);

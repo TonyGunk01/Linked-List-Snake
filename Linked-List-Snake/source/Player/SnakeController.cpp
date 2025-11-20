@@ -158,54 +158,48 @@ namespace Player
 
 		if (food_service->processFoodCollision(single_linked_list->getHeadNode(), food_type))
 		{
+			player_score++;
 			ServiceLocator::getInstance()->getSoundService()->playSound(Sound::SoundType::PICKUP);
 
 			food_service->destroyFood();
 			OnFoodCollected(food_type);
+
 		}
 	}
 
-	void SnakeController::OnFoodCollected(FoodType food_type)
+	void SnakeController::OnFoodCollected(LinkedList::Node* head_node, FoodType food_type)
 	{
 		switch (food_type)
 		{
 			case FoodType::PIZZA:
-				//Insert at TAIL
 				single_linked_list->insertNodeAtTail();
 				break;
 
 			case FoodType::BURGER:
-				//Insert at HEAD
 				single_linked_list->insertNodeAtHead();
 				break;
 
 			case FoodType::CHEESE:
-				//Insert at MIDDLE
 				single_linked_list->insertNodeAtMiddle();
 				break;
 
 			case FoodType::APPLE:
-				//Delete at HEAD
 				single_linked_list->removeNodeAtHead();
 				break;
 
 			case FoodType::MANGO:
-				//Delete at MIDDLE
 				single_linked_list->removeNodeAtMiddle();
 				break;
 
 			case FoodType::ORANGE:
-				//Delete at TAIL
 				single_linked_list->removeNodeAtTail();
 				break;
 
 			case FoodType::POISON:
-				//Delete half nodes
 				single_linked_list->removeHalfNodes();
 				break;
 
 			case FoodType::ALCOHOL:
-				//Reverse Direction
 				current_snake_direction = single_linked_list->reverse();
 				break;
 		}
@@ -231,6 +225,7 @@ namespace Player
 		current_snake_direction = default_direction;
 		elapsed_duration = 0.0f;
 		restart_counter = 0.0f;
+		player_score = 0;
 		current_input_state = InputState::WAITING;
 	}
 
@@ -249,6 +244,11 @@ namespace Player
 	SnakeState SnakeController::getSnakeState()
 	{
 		return current_snake_state;
+	}
+
+	int SnakeController::getPlayerScore()
+	{
+		return player_score;
 	}
 
 	std::vector<sf::Vector2i> SnakeController::getCurrentSnakePositionList()
