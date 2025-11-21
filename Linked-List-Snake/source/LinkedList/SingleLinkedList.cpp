@@ -1,9 +1,5 @@
 #include "LinkedList/SingleLinkedList.h"
 #include "Player/BodyPart.h"
-#include "Level/LevelView.h"
-#include <iostream>
-
-#include <iostream>
 
 namespace LinkedList
 {
@@ -14,7 +10,7 @@ namespace LinkedList
 
     SingleLinkedList::~SingleLinkedList() = default;
 
-    void SingleLinkedList::initialize(float width, float height, sf::Vector2i position, Direction direction)
+    void SingleLinkedList::initialize(float width, float height, Vector2i position, Direction direction)
     {
         node_width = width;
         node_height = height;
@@ -79,7 +75,7 @@ namespace LinkedList
     {
         if (head_node == nullptr) return false;
 
-        sf::Vector2i predicted_position = head_node->body_part.getNextPosition();
+        Vector2i predicted_position = head_node->body_part.getNextPosition();
 
 		Node* cur_node = head_node->next;
 		while (cur_node != nullptr)
@@ -271,13 +267,13 @@ namespace LinkedList
 
     void SingleLinkedList::shiftNodesAfterRemoval(Node* cur_node)
     {
-        sf::Vector2i previous_node_position = cur_node->body_part.getPosition();
+        Vector2i previous_node_position = cur_node->body_part.getPosition();
         Direction previous_node_direction = cur_node->body_part.getDirection();
         cur_node = cur_node->next;
 
         while (cur_node != nullptr)
         {
-            sf::Vector2i temp_node_position = cur_node->body_part.getPosition();
+            Vector2i temp_node_position = cur_node->body_part.getPosition();
             Direction temp_node_direction = cur_node->body_part.getDirection();
 
             cur_node->body_part.setPosition(previous_node_position);
@@ -397,12 +393,12 @@ namespace LinkedList
             return;
         }
 
-        sf::Vector2i position = getNewNodePosition(reference_node, operation);
+        Vector2i position = getNewNodePosition(reference_node, operation);
 
         new_node->body_part.initialize(node_width, node_height, position, reference_node->body_part.getDirection());
     }
 
-    sf::Vector2i SingleLinkedList::getNewNodePosition(Node* reference_node, Operation operation)
+    Vector2i SingleLinkedList::getNewNodePosition(Node* reference_node, Operation operation)
     {
 
         switch (operation)
@@ -426,9 +422,9 @@ namespace LinkedList
         return linked_list_size;
     }
 
-    std::vector<sf::Vector2i> SingleLinkedList::getNodesPositionList()
+    vector<Vector2i> SingleLinkedList::getNodesPositionList()
     {
-        std::vector<sf::Vector2i> nodes_position_list;
+        vector<Vector2i> nodes_position_list;
 
         Node* cur_node = head_node;
 

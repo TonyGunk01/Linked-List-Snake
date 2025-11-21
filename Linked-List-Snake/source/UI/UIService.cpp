@@ -35,7 +35,6 @@ namespace UI
 		gameplay_ui_controller = new GameplayUIController();
 		instructions_screen_ui_controller = new InstructionsScreenUIController();
 		credits_screen_ui_controller = new CreditsScreenUIController();
-
 	}
 
 	UIService::~UIService()
@@ -81,36 +80,36 @@ namespace UI
 	{
 		switch (GameService::getGameState())
 		{
-		case GameState::SPLASH_SCREEN:
-			return splash_screen_controller;
+			case GameState::SPLASH_SCREEN:
+				return splash_screen_controller;
 
-		case GameState::MAIN_MENU:
-			return main_menu_controller;
+			case GameState::MAIN_MENU:
+				return main_menu_controller;
 
-		case GameState::LEVEL_SELECTION:
-			return level_selection_ui_controller;
+			case GameState::LEVEL_SELECTION:
+				return level_selection_ui_controller;
 			
-		case GameState::INSTRUCTIONS:
-			return instructions_screen_ui_controller;
+			case GameState::INSTRUCTIONS:
+				return instructions_screen_ui_controller;
 
-		case GameState::CREDITS:
-			return credits_screen_ui_controller;
+			case GameState::CREDITS:
+				return credits_screen_ui_controller;
 
-		case GameState::GAMEPLAY:
-			return gameplay_ui_controller;
+			case GameState::GAMEPLAY:
+				return gameplay_ui_controller;
 
-		default:
-			return nullptr;
+			default:
+				return nullptr;
 		}
 	}
 
 	void UIService::destroy()
 	{
-		delete(splash_screen_controller);
-		delete(main_menu_controller);
-		delete(level_selection_ui_controller);
-		delete(gameplay_ui_controller);
-		delete(instructions_screen_ui_controller);
-		delete(credits_screen_ui_controller);
+		delete splash_screen_controller;
+		delete main_menu_controller;
+		delete level_selection_ui_controller;
+		delete gameplay_ui_controller;
+		delete instructions_screen_ui_controller;
+		delete credits_screen_ui_controller;
 	}
 }

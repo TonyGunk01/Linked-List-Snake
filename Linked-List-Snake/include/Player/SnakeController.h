@@ -1,4 +1,5 @@
 #pragma once
+
 #include <SFML/System/Vector2.hpp>
 #include "LinkedList/Node.h"
 #include "LinkedList/SingleLinkedList.h"
@@ -6,6 +7,11 @@
 
 namespace Player
 {
+	using namespace sf;
+	using namespace LinkedList;
+	using namespace std;
+	using namespace Food;
+
 	enum class TimeComplexity
 	{
 		NONE,
@@ -40,64 +46,64 @@ namespace Player
 
 	class SnakeController
 	{
-	private:
-		const int initial_snake_length = 10;
-		const float movement_frame_duration = 0.1f;
-		const float restart_duration = 3.f;
+		private:
+			const int initial_snake_length = 10;
+			const float movement_frame_duration = 0.1f;
+			const float restart_duration = 3.f;
 
-		const int minimum_snake_size = 3;
+			const int minimum_snake_size = 3;
 
-		const sf::Vector2i default_position = sf::Vector2i(25, 13);
-		const LinkedList::Direction default_direction = LinkedList::Direction::RIGHT;
+			const Vector2i default_position = Vector2i(25, 13);
+			const Direction default_direction = Direction::RIGHT;
 
-		SnakeState current_snake_state;
-		float elapsed_duration;
-		float restart_counter;
-		LinkedList::Direction current_snake_direction;
-		InputState current_input_state;
+			SnakeState current_snake_state;
+			float elapsed_duration;
+			float restart_counter;
+			Direction current_snake_direction;
+			InputState current_input_state;
 
-		int player_score;
-		TimeComplexity time_complexity;
-		LinkedListOperations last_linked_list_operation;
+			int player_score;
+			TimeComplexity time_complexity;
+			LinkedListOperations last_linked_list_operation;
 
-		LinkedList::SingleLinkedList* single_linked_list;
+			SingleLinkedList* single_linked_list;
 
-		void createLinkedList();
-		void processPlayerInput();
-		void updateSnakeDirection();
-		void delayedUpdate();
-		void moveSnake();
-		void processSnakeCollision();
+			void createLinkedList();
+			void processPlayerInput();
+			void updateSnakeDirection();
+			void delayedUpdate();
+			void moveSnake();
+			void processSnakeCollision();
 		
-		void processBodyCollision();
-		void processElementsCollision();
-		void processFoodCollision();
+			void processBodyCollision();
+			void processElementsCollision();
+			void processFoodCollision();
 
-		void OnFoodCollected(Food::FoodType food_type);
-		int getRandomBodyPartIndex();
+			void OnFoodCollected(FoodType food_type);
+			int getRandomBodyPartIndex();
 
-		void handleRestart();
-		void reset();
-		void destroy();
+			void handleRestart();
+			void reset();
+			void destroy();
 
-	public:
-		SnakeController();
-		~SnakeController();
+		public:
+			SnakeController();
+			~SnakeController();
 
-		void initialize();
-		void update();
-		void render();
+			void initialize();
+			void update();
+			void render();
 
-		void spawnSnake();
-		void respawnSnake();
-		void setSnakeState(SnakeState state);
-		SnakeState getSnakeState();
+			void spawnSnake();
+			void respawnSnake();
+			void setSnakeState(SnakeState state);
+			SnakeState getSnakeState();
 
-		std::vector<sf::Vector2i> getCurrentSnakePositionList();
-		TimeComplexity getTimeComplexity();
-		LinkedListOperations getLastOperation();
-		int getPlayerScore();
-		int getSnakeSize();
-		bool isSnakeSizeMinimum();
+			vector<Vector2i> getCurrentSnakePositionList();
+			TimeComplexity getTimeComplexity();
+			LinkedListOperations getLastOperation();
+			int getPlayerScore();
+			int getSnakeSize();
+			bool isSnakeSizeMinimum();
 	};
 }

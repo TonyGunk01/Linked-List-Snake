@@ -1,4 +1,5 @@
 #pragma once
+
 #include <vector>
 #include <SFML/System/Vector2.hpp>
 #include "LinkedList/Node.h"
@@ -8,26 +9,30 @@ namespace Element
 	class Obstacle;
 	struct ElementData;
 
+	using namespace sf;
+	using namespace std;
+	using namespace LinkedList;
+
 	class ElementService
 	{
-	private:
-		std::vector<Obstacle*> obstacle_list;
+		private:
+			vector<Obstacle*> obstacle_list;
 
-		void spawnObstacle(sf::Vector2i position, float cell_width, float cell_height);
-		void destroy();
+			void spawnObstacle(Vector2i position, float cell_width, float cell_height);
+			void destroy();
 
-	public:
-		ElementService();
-		~ElementService();
+		public:
+			ElementService();
+			~ElementService();
 
-		void initialize();
-		void update();
-		void render();
+			void initialize();
+			void update();
+			void render();
 
-		void reset();
-		const void spawnElements(std::vector<ElementData>& element_data_list, float cell_width, float cell_height);
-		std::vector<sf::Vector2i> getElementsPositionList();
+			void reset();
+			const void spawnElements(vector<ElementData>& element_data_list, float cell_width, float cell_height);
+			vector<Vector2i> getElementsPositionList();
 
-		bool processElementsCollision(LinkedList::Node* head_node);
+			bool processElementsCollision(Node* head_node);
 	};
 }

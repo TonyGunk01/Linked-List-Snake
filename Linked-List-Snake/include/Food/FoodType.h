@@ -11,6 +11,6 @@ namespace Food
         APPLE,
         MANGO,
         ORANGE,
-        POISION,
+        POISON,
     };
 }

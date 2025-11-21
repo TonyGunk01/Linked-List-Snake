@@ -6,7 +6,6 @@ namespace Player
 	PlayerService::PlayerService()
 	{
 		snake_controller = nullptr;
-
 		createController();
 	}
 
@@ -40,7 +39,7 @@ namespace Player
 		snake_controller->spawnSnake();
 	}
 
-	std::vector<sf::Vector2i> PlayerService::getCurrentSnakePositionList()
+	vector<Vector2i> PlayerService::getCurrentSnakePositionList()
 	{
 		return snake_controller->getCurrentSnakePositionList();
 	}
@@ -77,6 +76,6 @@ namespace Player
 
 	void PlayerService::destroy()
 	{
-		delete (snake_controller);
+		delete snake_controller;
 	}
 }

@@ -20,8 +20,8 @@ namespace Level
 
 	void LevelModel::initializeLevelData()
 	{
-		level_configurations.push_back(LevelData(Level::LevelNumber::ONE, &level_one_element_list));
-		level_configurations.push_back(LevelData(Level::LevelNumber::TWO, &level_two_element_list));
+		level_configurations.push_back(LevelData(LevelNumber::ONE, &level_one_element_list));
+		level_configurations.push_back(LevelData(LevelNumber::TWO, &level_two_element_list));
 	}
 
 	const std::vector<ElementData>& LevelModel::getElementDataList(int level_to_load)
