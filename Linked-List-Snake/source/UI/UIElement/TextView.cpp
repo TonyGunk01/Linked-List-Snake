@@ -7,14 +7,14 @@ namespace UI
 	{
 		using namespace Global;
 
-		sf::Font TextView::font_bubble_bobble;
-		sf::Font TextView::font_DS_DIGIB;
+		Font TextView::font_bubble_bobble;
+		Font TextView::font_DS_DIGIB;
 
 		TextView::TextView() = default;
 
 		TextView::~TextView() = default;
 
-		void TextView::initialize(sf::String text_value, sf::Vector2f position, FontType font_type, int font_size, sf::Color color)
+		void TextView::initialize(String text_value, Vector2f position, FontType font_type, int font_size, Color color)
 		{
 			UIView::initialize();
 
@@ -49,7 +49,7 @@ namespace UI
 			font_DS_DIGIB.loadFromFile(Config::DS_DIGIB_font_path);
 		}
 
-		void TextView::setText(sf::String text_value)
+		void TextView::setText(String text_value)
 		{
 			text.setString(text_value);
 		}
@@ -73,12 +73,12 @@ namespace UI
 			text.setCharacterSize(font_size);
 		}
 
-		void TextView::setTextPosition(sf::Vector2f position)
+		void TextView::setTextPosition(Vector2f position)
 		{
 			text.setPosition(position);
 		}
 
-		void TextView::setTextColor(sf::Color color)
+		void TextView::setTextColor(Color color)
 		{
 			text.setFillColor(color);
 		}
@@ -88,7 +88,7 @@ namespace UI
 			float x_position = (game_window->getSize().x - text.getLocalBounds().width) / 2;
 			float y_position = text.getGlobalBounds().getPosition().y;
 
-			text.setPosition(sf::Vector2f(x_position, y_position));
+			text.setPosition(Vector2f(x_position, y_position));
 		}
 	}
 }

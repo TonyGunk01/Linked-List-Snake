@@ -3,11 +3,16 @@
 #include <SFML/System/Vector2.hpp>
 #include <random>
 #include <vector>
+#include "LinkedList/Node.h"
 
 namespace Food
 {
 	enum class FoodType;
 	class FoodItem;
+
+	using namespace sf;
+	using namespace LinkedList;
+	using namespace std;
 
 	enum FoodSpawningStatus
 	{
@@ -28,19 +33,19 @@ namespace Food
 			float cell_width;
 			float cell_height;
 
-			std::default_random_engine random_engine;
-			std::random_device random_device;
+			default_random_engine random_engine;
 
-			FoodItem* createFood(sf::Vector2i position, FoodType type);
+			random_device random_device;
+
+			FoodItem* createFood(Vector2i position, FoodType type);
 			void spawnFood();
 
-			sf::Vector2i getValidSpawnPosition();
-			sf::Vector2i getRandomPosition();
+			Vector2i getValidSpawnPosition();
+			Vector2i getRandomPosition();
 			FoodType getRandomFoodType();
 
-			bool isValidPosition(std::vector<sf::Vector2i> position_data, sf::Vector2i food_position);
+			bool isValidPosition(vector<Vector2i> position_data, Vector2i food_position);
 
-			void destroyFood();
 			void updateElapsedDuration();
 			void handleFoodSpawning();
 			void reset();
@@ -55,5 +60,8 @@ namespace Food
 
 			void startFoodSpawning();
 			void stopFoodSpawning();
+
+			bool processFoodCollision(Node* head_node, FoodType& out_food_type);
+			void destroyFood();
 	};
 }

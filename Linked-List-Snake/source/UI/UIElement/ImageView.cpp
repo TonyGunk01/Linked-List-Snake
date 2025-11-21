@@ -8,7 +8,7 @@ namespace UI
 
         ImageView::~ImageView() = default;
 
-        void ImageView::initialize(sf::String texture_path, float image_width, float image_height, sf::Vector2f position)
+        void ImageView::initialize(String texture_path, float image_width, float image_height, Vector2f position)
         {
             UIView::initialize();
             setTexture(texture_path);
@@ -29,7 +29,7 @@ namespace UI
                 game_window->draw(image_sprite);
         }
 
-        void ImageView::setTexture(sf::String texture_path)
+        void ImageView::setTexture(String texture_path)
         {
             if (image_texture.loadFromFile(texture_path))
                 image_sprite.setTexture(image_texture);
@@ -43,7 +43,7 @@ namespace UI
             image_sprite.setScale(scale_x, scale_y);
         }
 
-        void ImageView::setPosition(sf::Vector2f position)
+        void ImageView::setPosition(Vector2f position)
         {
             image_sprite.setPosition(position);
         }
@@ -60,7 +60,7 @@ namespace UI
 
         void ImageView::setImageAlpha(float alpha)
         {
-            sf::Color color = image_sprite.getColor();
+            Color color = image_sprite.getColor();
             color.a = alpha;
             image_sprite.setColor(color);
         }

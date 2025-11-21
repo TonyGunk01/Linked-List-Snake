@@ -5,28 +5,31 @@
 
 namespace UI
 {
+	using namespace sf;
+	using namespace std;
+
 	namespace UIElement
 	{
 		class ButtonView : public ImageView
 		{
 			private:
-				using CallbackFunction = std::function<void()>;
+				using CallbackFunction = function<void()>;
 
 				CallbackFunction callback_function = nullptr;
 
 				void printButtonClicked();
 
 			protected:
-				sf::String button_title;
+				String button_title;
 
 				virtual void handleButtonInteraction();
-				virtual bool clickedButton(sf::Sprite* button_sprite, sf::Vector2f mouse_position);
+				virtual bool clickedButton(Sprite* button_sprite, Vector2f mouse_position);
 
 			public:
 				ButtonView();
 				virtual ~ButtonView();
 
-				virtual void initialize(sf::String title, sf::String texture_path, float button_width, float button_height, sf::Vector2f position);
+				virtual void initialize(String title, String texture_path, float button_width, float button_height, Vector2f position);
 				virtual void update() override;
 				virtual void render() override;
 

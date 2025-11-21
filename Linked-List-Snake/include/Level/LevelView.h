@@ -5,14 +5,17 @@
 
 namespace Level
 {
+	using namespace sf;
+	using namespace UI::UIElement;
+
     class LevelView
     {
         private:
-            const sf::Color background_color = sf::Color(180, 200, 160);
-            const sf::Color border_color = sf::Color::Black;
+            const Color background_color = Color(180, 200, 160);
+            const Color border_color = Color::Black;
 
-            UI::UIElement::RectangleShapeView* background_rectangle;
-            UI::UIElement::RectangleShapeView* border_rectangle;
+            RectangleShapeView* background_rectangle;
+            RectangleShapeView* border_rectangle;
 
             float grid_width;
             float grid_height;
@@ -26,7 +29,8 @@ namespace Level
         public:
             static const int border_thickness = 10;
             static const int border_offset_left = 40;
-            static const int border_offset_top = 40;
+            static const int border_offset_top = 100;
+            static const int border_offset_bottom = 40;
 
             LevelView();
             ~LevelView();

@@ -4,6 +4,8 @@
 
 namespace UI
 {
+	using namespace sf;
+
 	namespace UIElement
 	{
 		enum class UIState
@@ -15,7 +17,7 @@ namespace UI
 		class UIView
 		{
 			protected:
-				sf::RenderWindow* game_window;
+				RenderWindow* game_window;
 				UIState ui_state;
 
 			public:

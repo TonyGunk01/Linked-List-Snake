@@ -2,18 +2,24 @@
 
 #include <vector>
 #include <SFML/System/Vector2.hpp>
+#include "LinkedList/Node.h"
 
 namespace Element
 {
 	class Obstacle;
 	struct ElementData;
 
+	using namespace sf;
+	using namespace std;
+	using namespace LinkedList;
+
 	class ElementService
 	{
 		private:
-			std::vector<Obstacle*> obstacle_list;
+			vector<Obstacle*> obstacle_list;
 
-			void spawnObstacle(sf::Vector2i position, float cell_width, float cell_height);
+			void spawnObstacle(Vector2i position, float cell_width, float cell_height);
+			void destroy();
 
 		public:
 			ElementService();
@@ -23,8 +29,10 @@ namespace Element
 			void update();
 			void render();
 
-			const void spawnElements(std::vector<ElementData>& element_data_list, float cell_width, float cell_height);
+			void reset();
+			const void spawnElements(vector<ElementData>& element_data_list, float cell_width, float cell_height);
+			vector<Vector2i> getElementsPositionList();
 
-			std::vector<sf::Vector2i> getElementsPositionList();
+			bool processElementsCollision(Node* head_node);
 	};
 }

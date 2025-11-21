@@ -4,25 +4,27 @@
 
 namespace UI
 {
+	using namespace sf;
+
 	namespace UIElement
 	{
 		class ImageView : public UIView
 		{
 			protected:
-				sf::Texture image_texture;
-				sf::Sprite image_sprite;
+				Texture image_texture;
+				Sprite image_sprite;
 
 			public:
 				ImageView();
 				virtual ~ImageView();
 
-				virtual void initialize(sf::String texture_path, float image_width, float image_height, sf::Vector2f position);
+				virtual void initialize(String texture_path, float image_width, float image_height, Vector2f position);
 				virtual void update() override;
 				virtual void render() override;
 
-				virtual void setTexture(sf::String texture_path);
+				virtual void setTexture(String texture_path);
 				virtual void setScale(float width, float height);
-				virtual void setPosition(sf::Vector2f position);
+				virtual void setPosition(Vector2f position);
 				virtual void setRotation(float rotation_angle);
 				virtual void setOriginAtCentre();
 				virtual void setImageAlpha(float alpha);

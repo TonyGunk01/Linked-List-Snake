@@ -5,6 +5,9 @@
 
 namespace UI
 {
+	using namespace sf;
+	using namespace std;
+
 	namespace UIElement
 	{
 		enum class AnimationType
@@ -16,7 +19,7 @@ namespace UI
 		class AnimatedImageView : public ImageView
 		{
 			private:
-				using CallbackFunction = std::function<void()>;
+				using CallbackFunction = function<void()>;
 
 				CallbackFunction callback_function = nullptr;
 
@@ -30,7 +33,7 @@ namespace UI
 				AnimationType animation_type;
 				float animation_duration;
 				float elapsed_duration;
-				sf::Clock clock;
+				Clock clock;
 
 				virtual void reset();
 				void setAnimationDuration(float duration);
@@ -43,7 +46,7 @@ namespace UI
 				AnimatedImageView();
 				virtual ~AnimatedImageView();
 
-				virtual void initialize(sf::String texture_path, float image_width, float image_height, sf::Vector2f position) override;
+				virtual void initialize(String texture_path, float image_width, float image_height, Vector2f position) override;
 				virtual void update() override;
 				virtual void render() override;
 

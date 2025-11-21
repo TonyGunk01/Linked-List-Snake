@@ -33,6 +33,7 @@
     <ClCompile Include="source\UI\UIElement\UIView.cpp" />
     <ClCompile Include="source\Food\FoodItem.cpp" />
     <ClCompile Include="source\Food\FoodService.cpp" />
+    <ClCompile Include="source\UI\GameplayUI\GameplayUIController.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Element\ElementData.h" />
@@ -73,5 +74,6 @@
     <ClInclude Include="include\Food\FoodType.h" />
     <ClInclude Include="include\Food\FoodItem.h" />
     <ClInclude Include="include\Food\FoodService.h" />
+    <ClInclude Include="include\UI\GameplayUI\GameplayUIController.h" />
   </ItemGroup>
 </Project>

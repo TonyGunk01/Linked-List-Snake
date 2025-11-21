@@ -2,15 +2,15 @@
 
 namespace Food
 {
-	enum class FoodType
-	{
-		APPLE,
-		MANGO,
-		ORANGE,
-		PIZZA,
-		BURGER,
-		CHEESE,
-		POISON,
-		ALCOHOL,
-	};
+    enum class FoodType
+    {
+        PIZZA,
+        BURGER,
+        CHEESE,
+        ALCOHOL,
+        APPLE,
+        MANGO,
+        ORANGE,
+        POISON,
+    };
 }

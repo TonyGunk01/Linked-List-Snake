@@ -5,6 +5,9 @@
 
 namespace Main
 {
+	using namespace sf;
+	using namespace Global;
+
 	enum class GameState
 	{
 		BOOT,
@@ -22,8 +25,8 @@ namespace Main
 		private:
 			static GameState current_state;
 
-			Global::ServiceLocator* service_locator;
-			sf::RenderWindow* game_window;
+			ServiceLocator* service_locator;
+			RenderWindow* game_window;
 
 			void initialize();
 			void initializeVariables();

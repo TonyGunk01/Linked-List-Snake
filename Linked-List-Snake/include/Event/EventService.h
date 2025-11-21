@@ -3,8 +3,10 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Event.hpp>
 
-namespace Event
+namespace Events
 {
+	using namespace sf;
+
 	enum class ButtonState
 	{
 		PRESSED,
@@ -15,8 +17,8 @@ namespace Event
 	class EventService
 	{
 		private:
-			sf::Event game_event;
-			sf::RenderWindow* game_window;
+			Event game_event;
+			RenderWindow* game_window;
 
 			ButtonState left_mouse_button_state;
 			ButtonState right_mouse_button_state;
@@ -25,7 +27,7 @@ namespace Event
 			bool gameWindowWasClosed();
 			bool hasQuitGame();
 			bool isKeyboardEvent();
-			void updateMouseButtonsState(ButtonState& current_button_state, sf::Mouse::Button mouse_button);
+			void updateMouseButtonsState(ButtonState& current_button_state, Mouse::Button mouse_button);
 
 		public:
 			EventService();

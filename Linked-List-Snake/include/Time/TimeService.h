@@ -4,10 +4,12 @@
 
 namespace Time
 {
+	using namespace std::chrono;
+
 	class TimeService
 	{
 		private:
-			std::chrono::time_point<std::chrono::steady_clock> previous_time;
+			time_point<steady_clock> previous_time;
 
 			float delta_time;
 
@@ -16,7 +18,6 @@ namespace Time
 			void updatePreviousTime();
 
 		public:
-
 			void initialize();
 			void update();
 

@@ -10,8 +10,8 @@ namespace UI
     namespace Instructions
     {
         using namespace Global;
-        using namespace Event;
-        using namespace Sound;
+        using namespace Events;
+        using namespace Sounds;
         using namespace Main;
         using namespace Graphics;
         using namespace UI::UIElement;
@@ -49,42 +49,40 @@ namespace UI
         void InstructionsScreenUIController::createText()
         {
             for (int i = 0; i < number_of_instructions; i++)
-            {
                 instructions_text_list.push_back(new TextView());
-            }
         }
 
         void InstructionsScreenUIController::initializeBackgroundImage()
         {
-            sf::RenderWindow* game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
+            RenderWindow* game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
 
-            background_image->initialize(Config::background_texture_path, game_window->getSize().x, game_window->getSize().y, sf::Vector2f(0, 0));
+            background_image->initialize(Config::background_texture_path, game_window->getSize().x, game_window->getSize().y, Vector2f(0, 0));
             background_image->setImageAlpha(background_alpha);
         }
 
         void InstructionsScreenUIController::initializeButtons()
         {
             float x_position = calculateLeftOffsetForButton();
-            menu_button->initialize("Menu Button", Config::menu_button_texture_path, button_width, button_height, sf::Vector2f(x_position, menu_button_y_position));
+            menu_button->initialize("Menu Button", Config::menu_button_texture_path, button_width, button_height, Vector2f(x_position, menu_button_y_position));
         }
 
         void InstructionsScreenUIController::initializeTexts()
         {
             for (int i = 0; i < instructions_text_list.size(); i++)
             {
-                instructions_text_list[i]->initialize(instructions[i], sf::Vector2f(0, top_offset + (text_spacing * i)), FontType::BUBBLE_BOBBLE, font_size, text_color);
+                instructions_text_list[i]->initialize(instructions[i], Vector2f(0, top_offset + (text_spacing * i)), FontType::BUBBLE_BOBBLE, font_size, text_color);
                 instructions_text_list[i]->setTextCentreAligned();
             }
         }
 
         void InstructionsScreenUIController::registerButtonCallback()
         {
-            menu_button->registerCallbackFuntion(std::bind(&InstructionsScreenUIController::menuButtonCallback, this));
+            menu_button->registerCallbackFuntion(bind(&InstructionsScreenUIController::menuButtonCallback, this));
         }
 
         float InstructionsScreenUIController::calculateLeftOffsetForButton()
         {
-            sf::RenderWindow* game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
+            RenderWindow* game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
             return (static_cast<float>(game_window->getSize().x) / 2) - button_width / 2;
         }
 
@@ -123,8 +121,8 @@ namespace UI
 
         void InstructionsScreenUIController::destroy()
         {
-            delete (background_image);
-            delete (menu_button);
+            delete background_image;
+            delete menu_button;
 
             for (int i = 0; i < instructions_text_list.size(); i++)
                 delete (instructions_text_list[i]);

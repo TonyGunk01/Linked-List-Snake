@@ -8,7 +8,7 @@ namespace UI
 
 		RectangleShapeView::~RectangleShapeView() = default;
 
-		void RectangleShapeView::initialize(sf::Vector2f rectangle_size, sf::Vector2f rectangle_position, int outline_thickness, sf::Color fill_color, sf::Color outline_color)
+		void RectangleShapeView::initialize(Vector2f rectangle_size, Vector2f rectangle_position, int outline_thickness, Color fill_color, Color outline_color)
 		{
 			UIView::initialize();
 
@@ -32,22 +32,22 @@ namespace UI
 				game_window->draw(rectangle_shape);
 		}
 
-		void RectangleShapeView::setSize(sf::Vector2f rectangle_size)
+		void RectangleShapeView::setSize(Vector2f rectangle_size)
 		{
 			rectangle_shape.setSize(rectangle_size);
 		}
 
-		void RectangleShapeView::setPosition(sf::Vector2f rectangle_position)
+		void RectangleShapeView::setPosition(Vector2f rectangle_position)
 		{
 			rectangle_shape.setPosition(rectangle_position);
 		}
 
-		void RectangleShapeView::setFillColor(sf::Color fill_color)
+		void RectangleShapeView::setFillColor(Color fill_color)
 		{
 			rectangle_shape.setFillColor(fill_color);
 		}
 
-		void RectangleShapeView::setOutlineColor(sf::Color outline_color)
+		void RectangleShapeView::setOutlineColor(Color outline_color)
 		{
 			rectangle_shape.setOutlineColor(outline_color);
 		}
