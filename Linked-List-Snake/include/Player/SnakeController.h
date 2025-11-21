@@ -1,16 +1,17 @@
 #pragma once
 
 #include <SFML/System/Vector2.hpp>
-#include "LinkedList/Node.h"
-#include "LinkedList/SingleLinkedList.h"
+#include "LinkedListLib/Node.h"
+#include "LinkedListLib/LinkedList.h"
 #include "Food/FoodType.h"
 
 namespace Player
 {
 	using namespace sf;
-	using namespace LinkedList;
+	using namespace LinkedListLib;
 	using namespace std;
 	using namespace Food;
+	using namespace Player;
 
 	enum class TimeComplexity
 	{
@@ -66,7 +67,7 @@ namespace Player
 			TimeComplexity time_complexity;
 			LinkedListOperations last_linked_list_operation;
 
-			SingleLinkedList* single_linked_list;
+			Player::LinkedList* single_linked_list;
 
 			void createLinkedList();
 			void processPlayerInput();

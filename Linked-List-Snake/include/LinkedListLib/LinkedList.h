@@ -1,9 +1,9 @@
 #pragma once
 
 #include <SFML/System/Vector2.hpp>
-#include "LinkedList/Node.h"
+#include "LinkedListLib/Node.h"
 
-namespace LinkedList
+namespace LinkedListLib
 {
 	using namespace sf;
 	using namespace std;
@@ -15,7 +15,7 @@ namespace LinkedList
 		TAIL,
 	};
 
-	class SingleLinkedList
+	class LinkedList
 	{
 		private:
 			Node* head_node;
@@ -37,8 +37,8 @@ namespace LinkedList
 			int findMiddleNode();
 
 		public:
-			SingleLinkedList();
-			~SingleLinkedList();
+			LinkedList();
+			~LinkedList();
 
 			void initialize(float width, float height, Vector2i position, Direction direction);
 			void render();

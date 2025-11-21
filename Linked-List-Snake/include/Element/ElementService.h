@@ -2,7 +2,7 @@
 
 #include <vector>
 #include <SFML/System/Vector2.hpp>
-#include "LinkedList/Node.h"
+#include "LinkedListLib/Node.h"
 
 namespace Element
 {
@@ -11,7 +11,7 @@ namespace Element
 
 	using namespace sf;
 	using namespace std;
-	using namespace LinkedList;
+	using namespace LinkedListLib;
 
 	class ElementService
 	{
