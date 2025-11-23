@@ -230,20 +230,7 @@ namespace LinkedListLib
             return;
 
         int midIndex = findMiddleNode();
-        removeNodeAt(midIndex);
-    }
-
-
-    void LinkedList::removeNodeAt(int index)
-    {
-        if (index < 0 || index >= linked_list_size) 
-            return;
-
-        if (index == 0)
-            removeNodeAtHead();
-        
-        else
-            removeNodeAtIndex(index);
+        removeNodeAtIndex(midIndex);
     }
 
     void LinkedList::removeNodeAtIndex(int index)
