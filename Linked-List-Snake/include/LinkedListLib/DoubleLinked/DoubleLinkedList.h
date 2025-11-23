@@ -15,7 +15,6 @@ namespace LinkedListLib
 				DoubleLinkedList();
 				~DoubleLinkedList();
 
-
 				void insertNodeAtTail() override;
 				void insertNodeAtHead() override;
 				void insertNodeAtMiddle() override;

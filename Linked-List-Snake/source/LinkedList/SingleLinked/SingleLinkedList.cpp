@@ -197,7 +197,7 @@ namespace LinkedListLib
 
             while (cur_node != nullptr)
             {
-                sf::Vector2i temp_node_position = cur_node->body_part.getPosition();
+                Vector2i temp_node_position = cur_node->body_part.getPosition();
                 Direction temp_node_direction = cur_node->body_part.getDirection();
 
                 cur_node->body_part.setPosition(previous_node_position);

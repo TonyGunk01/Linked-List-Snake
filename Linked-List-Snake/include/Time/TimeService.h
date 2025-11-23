@@ -4,7 +4,8 @@
 
 namespace Time
 {
-	using namespace std::chrono;
+	using namespace std;
+	using namespace chrono;
 
 	class TimeService
 	{

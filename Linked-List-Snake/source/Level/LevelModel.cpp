@@ -24,7 +24,7 @@ namespace Level
 		level_configurations.push_back(LevelData(LevelNumber::TWO, &level_two_element_list));
 	}
 
-	const std::vector<ElementData>& LevelModel::getElementDataList(int level_to_load)
+	const vector<ElementData>& LevelModel::getElementDataList(int level_to_load)
 	{
 		return *level_configurations[level_to_load].element_data_list;
 	}

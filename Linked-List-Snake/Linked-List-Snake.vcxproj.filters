@@ -36,6 +36,7 @@
     <ClCompile Include="source\UI\GameplayUI\GameplayUIController.cpp" />
     <ClCompile Include="source\LinkedList\SingleLinked\SingleLinkedList.cpp" />
     <ClCompile Include="source\LinkedList\DoubleLinked\DoubleLinkedList.cpp" />
+    <ClCompile Include="source\LinkedListUI\LinkedListSelectionUIController.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Element\ElementData.h" />
@@ -50,7 +51,7 @@
     <ClInclude Include="include\Level\LevelController.h" />
     <ClInclude Include="include\Level\LevelData.h" />
     <ClInclude Include="include\Level\LevelModel.h" />
-    <ClInclude Include="include\Level\LevelNumber.h" />
+    <ClInclude Include="include\Level\LevelConfig.h" />
     <ClInclude Include="include\UI\LevelSelection\LevelSelectionUIController.h" />
     <ClInclude Include="include\Level\LevelView.h" />
     <ClInclude Include="include\Level\LevelService.h" />
@@ -81,5 +82,6 @@
     <ClInclude Include="include\LinkedListLib\SingleLinked\SingleNode.h" />
     <ClInclude Include="include\LinkedListLib\DoubleLinked\DoubleLinkedList.h" />
     <ClInclude Include="include\LinkedListLib\DoubleLinked\DoubleNode.h" />
+    <ClInclude Include="include\UI\LinkedListUI\LinkedListSelectionUIController.h" />
   </ItemGroup>
 </Project>
