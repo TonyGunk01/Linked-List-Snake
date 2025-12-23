@@ -3,7 +3,7 @@
 #include <SFML/System/Vector2.hpp>
 #include <random>
 #include <vector>
-#include "LinkedList/Node.h"
+#include "LinkedListLib/Node.h"
 
 namespace Food
 {
@@ -11,7 +11,7 @@ namespace Food
 	class FoodItem;
 
 	using namespace sf;
-	using namespace LinkedList;
+	using namespace LinkedListLib;
 	using namespace std;
 
 	enum FoodSpawningStatus
