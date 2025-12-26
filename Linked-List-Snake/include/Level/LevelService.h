@@ -1,6 +1,6 @@
 #pragma once
 
-#include "LevelConfig.h"
+#include "Level/LevelConfig.h"
 
 namespace Level
 {
@@ -8,7 +8,6 @@ namespace Level
 
     class LevelService
     {
-        private:
             LevelController* level_controller;
             LevelNumber current_level;
             LinkedListType current_linked_list_type;
@@ -33,5 +32,6 @@ namespace Level
             float getCellWidth();
             float getCellHeight();
             LevelNumber getCurrentLevel();
+            LinkedListType getCurrentLinkedListType();
     };
 }

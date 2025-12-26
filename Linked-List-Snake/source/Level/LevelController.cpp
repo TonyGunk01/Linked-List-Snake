@@ -5,7 +5,6 @@
 namespace Level
 {
 	using namespace Element;
-	using namespace std;
 
 	LevelController::LevelController()
 	{
@@ -45,7 +44,7 @@ namespace Level
 		return level_model->getCellHeight();
 	}
 
-	const vector<ElementData>& LevelController::getElementDataList(int level_to_load)
+	const std::vector<ElementData>& LevelController::getElementDataList(int level_to_load)
 	{
 		return level_model->getElementDataList(level_to_load);
 	}

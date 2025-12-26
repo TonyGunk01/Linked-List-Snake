@@ -1,5 +1,5 @@
 #pragma once
-
+#include <SFML/System/Vector2.hpp>
 #include "LinkedListLib/Node.h"
 #include "LinkedListLib/LinkedList.h"
 
@@ -14,13 +14,12 @@ namespace LinkedListLib
 
 			public:
 				SingleLinkedList();
-				~SingleLinkedList() override;
+				~SingleLinkedList();
 
 				void insertNodeAtTail() override;
 				void insertNodeAtHead() override;
-				void insertNodeAtMiddle() override;
+				void insertNodeAtMiddle() override; 
 				void insertNodeAtIndex(int index) override;
-
 				void shiftNodesAfterInsertion(Node* new_node, Node* cur_node, Node* prev_node);
 
 				void removeNodeAtTail() override;
@@ -30,11 +29,9 @@ namespace LinkedListLib
 				void removeNodeAtIndex(int index);
 				void removeAllNodes() override;
 				void removeHalfNodes() override;
-
 				void shiftNodesAfterRemoval(Node* cur_node);
 
 				Direction reverse() override;
-				void updateNodePosition() override;
 		};
 	}
 }

@@ -1,16 +1,14 @@
 #pragma once
+#include <SFML/Graphics.hpp>
 #include "UI/Interface/IUIController.h"
 #include "UI/UIElement/ButtonView.h"
 #include "UI/UIElement/ImageView.h"
 
 namespace UI
 {
-	using namespace Interface;
-	using namespace UIElement;
-
 	namespace LinkedListUI
 	{
-		class LinkedListSelectionUIController : public IUIController
+		class LinkedListSelectionUIController : public Interface::IUIController
 		{
 			private:
 				const float button_width = 400.f;
@@ -22,11 +20,11 @@ namespace UI
 
 				const float background_alpha = 85.f;
 
-				ImageView* background_image;
+				UIElement::ImageView* background_image;
 
-				ButtonView* single_linked_list_button;
-				ButtonView* double_linked_list_button;
-				ButtonView* menu_button;
+				UIElement::ButtonView* single_linked_list_button;
+				UIElement::ButtonView* double_linked_list_button;
+				UIElement::ButtonView* menu_button;
 
 				void createImage();
 				void createButtons();

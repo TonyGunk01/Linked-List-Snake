@@ -1,5 +1,4 @@
 #pragma once
-
 #include "LinkedListLib/LinkedList.h"
 
 namespace LinkedListLib

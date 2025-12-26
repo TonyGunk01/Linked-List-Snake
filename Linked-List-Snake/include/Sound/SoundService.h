@@ -1,11 +1,8 @@
 #pragma once
-
 #include "SFML/Audio.hpp"
 
-namespace Sounds
+namespace Sound
 {
-	using namespace sf;
-
 	enum class SoundType
 	{
 		BUTTON_CLICK,
@@ -15,24 +12,24 @@ namespace Sounds
 
 	class SoundService
 	{
-		private:
-			const int background_music_volume = 30;
+	private:
+		const int background_music_volume = 30;
 
-			Music background_music;
-			Sound sound_effect;
-			SoundBuffer buffer_button_click;
-			SoundBuffer buffer_pickup;
-			SoundBuffer buffer_death;
+		sf::Music background_music;
+		sf::Sound sound_effect;
+		sf::SoundBuffer buffer_button_click;
+		sf::SoundBuffer buffer_pickup;
+		sf::SoundBuffer buffer_death;
 
-			void loadBackgroundMusicFromFile();
-			void loadSoundFromFile();
+		void loadBackgroundMusicFromFile();
+		void loadSoundFromFile();
 
-		public:
-			SoundService();
+	public:
+		SoundService();
 
-			void initialize();
+		void initialize();
 
-			void playSound(SoundType soundType);
-			void playBackgroundMusic();
+		void playSound(SoundType soundType);
+		void playBackgroundMusic();
 	};
 }

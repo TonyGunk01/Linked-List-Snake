@@ -1,5 +1,4 @@
 #pragma once
-
 #include "Graphics/GraphicService.h"
 #include "Event/EventService.h"
 #include "UI/UIService.h"
@@ -12,52 +11,41 @@
 
 namespace Global
 {
-	using namespace Events;
-	using namespace Graphics;
-	using namespace Sounds;
-	using namespace Level;
-	using namespace Element;
-	using namespace Player;
-	using namespace Food;
-	using namespace UI;
-	using namespace Time;
-
     class ServiceLocator
     {
-        private:
-            EventService* event_service;
-            GraphicService* graphic_service;
-            SoundService* sound_service;
-            LevelService* level_service;
-            ElementService* element_service;
-            PlayerService* player_service;
-            FoodService* food_service;
-            UIService* ui_service;
-            TimeService* time_service;
+    private:
+        Event::EventService* event_service;
+        Graphics::GraphicService* graphic_service;
+        Sound::SoundService* sound_service;
+        Level::LevelService* level_service;
+        Element::ElementService* element_service;
+        Player::PlayerService* player_service;
+        Food::FoodService* food_service;
+        UI::UIService* ui_service;
+        Time::TimeService* time_service;
 
-            ServiceLocator();
-            ~ServiceLocator();
+        ServiceLocator();
+        ~ServiceLocator();
 
-            void createServices();
-            void clearAllServices();
+        void createServices();
+        void clearAllServices();
 
-        public:
-            static ServiceLocator* getInstance();
+    public:
+        static ServiceLocator* getInstance();
 
-            void initialize();
-            void update();
-            void render();
+        void initialize();
+        void update();
+        void render();
 
-            EventService* getEventService();
-            GraphicService* getGraphicService();
-            SoundService* getSoundService();
-            LevelService* getLevelService();
-            ElementService* getElementService();
-            PlayerService* getPlayerService();
-            UIService* getUIService();
-            FoodService* getFoodService();
-            TimeService* getTimeService();
-
-            void deleteServiceLocator();
+        Event::EventService* getEventService();
+        Graphics::GraphicService* getGraphicService();
+        Sound::SoundService* getSoundService();
+        Level::LevelService* getLevelService();
+        Element::ElementService* getElementService();
+        Player::PlayerService* getPlayerService();
+        UI::UIService* getUIService();
+        Food::FoodService* getFoodService();
+        Time::TimeService* getTimeService();
+        void deleteServiceLocator();
     };
 }

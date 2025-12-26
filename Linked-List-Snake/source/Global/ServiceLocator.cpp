@@ -4,8 +4,8 @@
 namespace Global
 {
 	using namespace Graphics;
-	using namespace Events;
-	using namespace Sounds;
+	using namespace Event;
+	using namespace Sound;
 	using namespace Level;
 	using namespace UI;
 	using namespace Main;
@@ -29,10 +29,7 @@ namespace Global
 		createServices();
 	}
 
-	ServiceLocator::~ServiceLocator() 
-	{ 
-		clearAllServices(); 
-	}
+	ServiceLocator::~ServiceLocator() { clearAllServices(); }
 
 	void ServiceLocator::createServices()
 	{
@@ -94,15 +91,15 @@ namespace Global
 
 	void ServiceLocator::clearAllServices()
 	{
-		delete ui_service;
-		delete food_service;
-		delete player_service;
-		delete element_service;
-		delete level_service;
-		delete graphic_service;
-		delete sound_service;
-		delete event_service;
-		delete time_service;
+		delete(ui_service);
+		delete(food_service);
+		delete(player_service);
+		delete(element_service);
+		delete(level_service);
+		delete(graphic_service);
+		delete(sound_service);
+		delete(event_service);
+		delete(time_service);
 	}
 
 	ServiceLocator* ServiceLocator::getInstance()
@@ -111,53 +108,23 @@ namespace Global
 		return &instance;
 	}
 
-	EventService* ServiceLocator::getEventService() 
-	{ 
-		return event_service; 
-	}
+	EventService* ServiceLocator::getEventService() { return event_service; }
 
-	GraphicService* ServiceLocator::getGraphicService() 
-	{ 
-		return graphic_service; 
-	}
+	GraphicService* ServiceLocator::getGraphicService() { return graphic_service; }
 
-	SoundService* ServiceLocator::getSoundService() 
-	{ 
-		return sound_service; 
-	}
+	SoundService* ServiceLocator::getSoundService() { return sound_service; }
 
-	LevelService* ServiceLocator::getLevelService() 
-	{
-		return level_service; 
-	}
+	Level::LevelService* ServiceLocator::getLevelService() { return level_service; }
 
-	ElementService* ServiceLocator::getElementService() 
-	{ 
-		return element_service; 
-	}
+	Element::ElementService* ServiceLocator::getElementService() { return element_service; }
 
-	TimeService* ServiceLocator::getTimeService() 
-	{ 
-		return time_service; 
-	}
+	Time::TimeService* ServiceLocator::getTimeService() { return time_service; }
 
-	PlayerService* ServiceLocator::getPlayerService() 
-	{ 
-		return player_service; 
-	}
+	Player::PlayerService* ServiceLocator::getPlayerService() { return player_service; }
 
-	UIService* ServiceLocator::getUIService() 
-	{ 
-		return ui_service; 
-	}
+	UIService* ServiceLocator::getUIService() { return ui_service; }
 
-	FoodService* ServiceLocator::getFoodService() 
-	{ 
-		return food_service; 
-	}
+	Food::FoodService* ServiceLocator::getFoodService() { return food_service; }
 
-	void ServiceLocator::deleteServiceLocator() 
-	{ 
-		delete this; 
-	}
+	void ServiceLocator::deleteServiceLocator() { delete(this); }
 }

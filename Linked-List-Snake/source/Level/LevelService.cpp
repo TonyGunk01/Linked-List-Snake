@@ -14,7 +14,6 @@ namespace Level
 	LevelService::LevelService()
 	{
 		level_controller = nullptr;
-
 		createLevelController();
 	}
 
@@ -51,6 +50,11 @@ namespace Level
 		spawnPlayer();
 	}
 
+	void LevelService::setCurrentLevelNumber(LevelNumber level_to_load)
+	{
+		current_level = level_to_load;
+	}
+
 	float LevelService::getCellWidth()
 	{
 		return level_controller->getCellWidth();
@@ -66,9 +70,14 @@ namespace Level
 		return current_level;
 	}
 
+	LinkedListType LevelService::getCurrentLinkedListType()
+	{
+		return current_linked_list_type;
+	}
+
 	void LevelService::spawnPlayer()
 	{
-		ServiceLocator::getInstance()->getPlayerService()->spawnPlayer();
+		ServiceLocator::getInstance()->getPlayerService()->spawnPlayer(current_linked_list_type);
 	}
 
 	void LevelService::spawnLevelElements(LevelNumber level_to_load)
@@ -78,7 +87,7 @@ namespace Level
 		float cell_width = level_controller->getCellWidth();
 		float cell_height = level_controller->getCellHeight();
 
-		vector<ElementData> element_data_list = level_controller->getElementDataList((int)level_to_load);
+		std::vector<ElementData> element_data_list = level_controller->getElementDataList((int)level_to_load);
 		ServiceLocator::getInstance()->getElementService()->spawnElements(element_data_list, cell_width, cell_height);
 	}
 

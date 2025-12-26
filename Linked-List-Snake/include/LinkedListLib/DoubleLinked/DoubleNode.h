@@ -1,5 +1,4 @@
 #pragma once
-
 #include "LinkedListLib/Node.h"
 
 namespace LinkedListLib

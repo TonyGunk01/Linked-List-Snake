@@ -1,42 +1,37 @@
 #pragma once
-
 #include <SFML/Graphics.hpp>
 
 namespace Graphics
 {
-	using namespace sf;
-	using namespace std;
-
 	class GraphicService
 	{
-		private:
-			const int frame_rate = 60;
+	private:
+		const int frame_rate = 60;
 
-			const string game_window_title = "Outscal Presents - Snake Game";
+		const std::string game_window_title = "Outscal Presents - Snake Game";
 
-			const int game_window_width = 1920;
-			const int game_window_height = 1080;
+		const int game_window_width = 1920;
+		const int game_window_height = 1080;
 
-			const Color window_color = Color(200, 200, 0, 255);
+		const sf::Color window_color = sf::Color(200, 200, 0, 255);
 
-			VideoMode video_mode;
-			RenderWindow* game_window;
+		sf::VideoMode video_mode;
+		sf::RenderWindow* game_window;
 
-			void configureVideoMode();
-			void onDestroy();
+		void configureVideoMode();
+		void onDestroy();
 
-		public:
-			GraphicService();
-			~GraphicService();
+	public:
+		GraphicService();
+		~GraphicService();
 
-			RenderWindow* createGameWindow();
+		sf::RenderWindow* createGameWindow();
 
-			void initialize();
-			void update();
-			void render();
-			bool isGameWindowOpen();
-			void setFrameRate(int);
-
-			RenderWindow* getGameWindow();
+		void initialize();
+		void update();
+		void render();
+		bool isGameWindowOpen();
+		void setFrameRate(int);
+		sf::RenderWindow* getGameWindow();
 	};
 }

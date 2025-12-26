@@ -1,16 +1,12 @@
 #pragma once
-
 #include <chrono>
 
 namespace Time
 {
-	using namespace std;
-	using namespace chrono;
-
 	class TimeService
 	{
 		private:
-			time_point<steady_clock> previous_time;
+			std::chrono::time_point<std::chrono::steady_clock> previous_time;
 
 			float delta_time;
 

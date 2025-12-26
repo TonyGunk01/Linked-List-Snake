@@ -1,5 +1,6 @@
 #include "LinkedListLib/SingleLinked/SingleLinkedList.h"
 #include "LinkedListLib/SingleLinked/SingleNode.h"
+#include "Level/LevelView.h"
 
 namespace LinkedListLib
 {
@@ -55,8 +56,7 @@ namespace LinkedListLib
 
         void SingleLinkedList::insertNodeAtIndex(int index)
         {
-            if (index < 0 || index >= linked_list_size) 
-                return;
+            if (index < 0 || index >= linked_list_size) return;
 
             if (index == 0)
             {
@@ -87,14 +87,17 @@ namespace LinkedListLib
 
         void SingleLinkedList::insertNodeAtMiddle()
         {
-            if (head_node == nullptr)
+            if (head_node == nullptr) 
             {
+                // If the list is empty, insert at the head.
                 insertNodeAtHead();
                 return;
             }
 
-            int midIndex = findMiddleNode();
+            // Use the existing function to find the middle index
+            int midIndex = findMiddleNode();    
 
+            // Use the existing function to insert the node at the found index
             insertNodeAtIndex(midIndex);
         }
 
@@ -118,8 +121,7 @@ namespace LinkedListLib
 
         void SingleLinkedList::removeNodeAtTail()
         {
-            if (head_node == nullptr) 
-                return;
+            if (head_node == nullptr) return;
 
             Node* cur_node = head_node;
 
@@ -149,25 +151,25 @@ namespace LinkedListLib
             delete (cur_node);
         }
 
-        void SingleLinkedList::removeNodeAtMiddle() 
-        {
-            if (head_node == nullptr) 
-                return;
+        void SingleLinkedList::removeNodeAtMiddle() {
+            if (head_node == nullptr) return; // If the list is empty, there's nothing to remove
 
-            int midIndex = findMiddleNode();
-            removeNodeAt(midIndex);
+            int midIndex = findMiddleNode();  // Use the existing function to find the middle index
+            removeNodeAt(midIndex);           // Use the existing function to remove the node at the found index
         }
 
         void SingleLinkedList::removeNodeAt(int index)
         {
-            if (index < 0 || index >= linked_list_size) 
-                return;
+            if (index < 0 || index >= linked_list_size) return;
 
             if (index == 0)
+            {
                 removeNodeAtHead();
-
+            }
             else
+            {
                 removeNodeAtIndex(index);
+            }
         }
 
         void SingleLinkedList::removeNodeAtIndex(int index)
@@ -192,13 +194,13 @@ namespace LinkedListLib
 
         void SingleLinkedList::shiftNodesAfterRemoval(Node* cur_node)
         {
-            Vector2i previous_node_position = cur_node->body_part.getPosition();
+            sf::Vector2i previous_node_position = cur_node->body_part.getPosition();
             Direction previous_node_direction = cur_node->body_part.getDirection();
             cur_node = cur_node->next;
 
             while (cur_node != nullptr)
             {
-                Vector2i temp_node_position = cur_node->body_part.getPosition();
+                sf::Vector2i temp_node_position = cur_node->body_part.getPosition();
                 Direction temp_node_direction = cur_node->body_part.getDirection();
 
                 cur_node->body_part.setPosition(previous_node_position);
@@ -212,8 +214,7 @@ namespace LinkedListLib
 
         void SingleLinkedList::removeAllNodes()
         {
-            if (head_node == nullptr) 
-                return;
+            if (head_node == nullptr) return;
 
             while (head_node != nullptr)
             {
@@ -223,9 +224,7 @@ namespace LinkedListLib
 
         void SingleLinkedList::removeHalfNodes()
         {
-            if (linked_list_size <= 1) 
-                return;
-
+            if (linked_list_size <= 1) return;
             int half_length = linked_list_size / 2;
             int new_tail_index = half_length - 1;
 

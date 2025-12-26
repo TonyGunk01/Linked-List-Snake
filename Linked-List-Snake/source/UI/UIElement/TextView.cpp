@@ -7,14 +7,14 @@ namespace UI
 	{
 		using namespace Global;
 
-		Font TextView::font_bubble_bobble;
-		Font TextView::font_DS_DIGIB;
+		sf::Font TextView::font_bubble_bobble;
+		sf::Font TextView::font_DS_DIGIB;
 
 		TextView::TextView() = default;
 
 		TextView::~TextView() = default;
 
-		void TextView::initialize(String text_value, Vector2f position, FontType font_type, int font_size, Color color)
+		void TextView::initialize(sf::String text_value, sf::Vector2f position, FontType font_type, int font_size, sf::Color color)
 		{
 			UIView::initialize();
 
@@ -35,7 +35,9 @@ namespace UI
 			UIView::render();
 
 			if (ui_state == UIState::VISIBLE)
+			{
 				game_window->draw(text);
+			}
 		}
 
 		void TextView::initializeTextView()
@@ -49,7 +51,7 @@ namespace UI
 			font_DS_DIGIB.loadFromFile(Config::DS_DIGIB_font_path);
 		}
 
-		void TextView::setText(String text_value)
+		void TextView::setText(sf::String text_value)
 		{
 			text.setString(text_value);
 		}
@@ -58,13 +60,12 @@ namespace UI
 		{
 			switch (font_type)
 			{
-				case FontType::BUBBLE_BOBBLE:
-					text.setFont(font_bubble_bobble);
-					break;
-
-				case FontType::DS_DIGIB:
-					text.setFont(font_DS_DIGIB);
-					break;
+			case FontType::BUBBLE_BOBBLE:
+				text.setFont(font_bubble_bobble);
+				break;
+			case FontType::DS_DIGIB:
+				text.setFont(font_DS_DIGIB);
+				break;
 			}
 		}
 
@@ -73,12 +74,12 @@ namespace UI
 			text.setCharacterSize(font_size);
 		}
 
-		void TextView::setTextPosition(Vector2f position)
+		void TextView::setTextPosition(sf::Vector2f position)
 		{
 			text.setPosition(position);
 		}
 
-		void TextView::setTextColor(Color color)
+		void TextView::setTextColor(sf::Color color)
 		{
 			text.setFillColor(color);
 		}
@@ -88,7 +89,7 @@ namespace UI
 			float x_position = (game_window->getSize().x - text.getLocalBounds().width) / 2;
 			float y_position = text.getGlobalBounds().getPosition().y;
 
-			text.setPosition(Vector2f(x_position, y_position));
+			text.setPosition(sf::Vector2f(x_position, y_position));
 		}
 	}
 }

@@ -1,20 +1,23 @@
-#include "LinkedListLib/SingleLinked/SingleLinkedList.h"
-#include "LinkedListLib/SingleLinked/SingleNode.h"
+#include "LinkedListLib/DoubleLinked/DoubleLinkedList.h"
+#include "LinkedListLib/DoubleLinked/DoubleNode.h"
+#include "Level/LevelView.h"
+#include "Global/Config.h"
+#include <iostream>
 
 namespace LinkedListLib
 {
-    namespace SingleLinked
+    namespace DoubleLinked
     {
-        Node* SingleLinkedList::createNode()
+        Node* DoubleLinkedList::createNode()
         {
-            return new SingleNode();
+            return new DoubleNode();
         }
 
-        SingleLinkedList::SingleLinkedList() = default;
+        DoubleLinkedList::DoubleLinkedList() = default;
 
-        SingleLinkedList::~SingleLinkedList() = default;
+        DoubleLinkedList::~DoubleLinkedList() = default;
 
-        void SingleLinkedList::insertNodeAtTail()
+        void DoubleLinkedList::insertNodeAtTail()
         {
             linked_list_size++;
             Node* new_node = createNode();
@@ -23,6 +26,7 @@ namespace LinkedListLib
             if (cur_node == nullptr)
             {
                 head_node = new_node;
+                static_cast<DoubleNode*>(new_node)->previous = nullptr;
                 initializeNode(new_node, nullptr, Operation::TAIL);
                 return;
             }
@@ -33,10 +37,11 @@ namespace LinkedListLib
             }
 
             cur_node->next = new_node;
+            static_cast<DoubleNode*>(new_node)->previous = cur_node;
             initializeNode(new_node, cur_node, Operation::TAIL);
         }
 
-        void SingleLinkedList::insertNodeAtHead()
+        void DoubleLinkedList::insertNodeAtHead()
         {
             linked_list_size++;
             Node* new_node = createNode();
@@ -44,19 +49,33 @@ namespace LinkedListLib
             if (head_node == nullptr)
             {
                 head_node = new_node;
+                static_cast<DoubleNode*>(new_node)->previous = nullptr;
                 initializeNode(new_node, nullptr, Operation::HEAD);
                 return;
             }
 
             initializeNode(new_node, head_node, Operation::HEAD);
+
             new_node->next = head_node;
+            static_cast<DoubleNode*>(head_node)->previous = new_node;
+
             head_node = new_node;
         }
 
-        void SingleLinkedList::insertNodeAtIndex(int index)
+        void DoubleLinkedList::insertNodeAtMiddle()
         {
-            if (index < 0 || index >= linked_list_size) 
+            if (head_node == nullptr) {
+                insertNodeAtHead();             // If the list is empty, insert at the head.
                 return;
+            }
+
+            int midIndex = findMiddleNode();    // Use the existing function to find the middle index
+            insertNodeAtIndex(midIndex);             // Use the existing function to insert the node at the found index             
+        }
+
+        void DoubleLinkedList::insertNodeAtIndex(int index)
+        {
+            if (index < 0 || index >= linked_list_size) return;
 
             if (index == 0)
             {
@@ -77,28 +96,17 @@ namespace LinkedListLib
             }
 
             prev_node->next = new_node;
+            static_cast<DoubleNode*>(new_node)->previous = prev_node;
             new_node->next = cur_node;
+            static_cast<DoubleNode*>(cur_node)->previous = new_node;
 
-            initializeNode(new_node, prev_node, Operation::TAIL);
+            initializeNode(new_node, head_node, Operation::TAIL);
             linked_list_size++;
-
+            
             shiftNodesAfterInsertion(new_node, cur_node, prev_node);
         }
 
-        void SingleLinkedList::insertNodeAtMiddle()
-        {
-            if (head_node == nullptr)
-            {
-                insertNodeAtHead();
-                return;
-            }
-
-            int midIndex = findMiddleNode();
-
-            insertNodeAtIndex(midIndex);
-        }
-
-        void SingleLinkedList::shiftNodesAfterInsertion(Node* new_node, Node* cur_node, Node* prev_node)
+        void DoubleLinkedList::shiftNodesAfterInsertion(Node* new_node, Node* cur_node, Node* prev_node)
         {
             Node* next_node = cur_node;
             cur_node = new_node;
@@ -116,10 +124,9 @@ namespace LinkedListLib
             initializeNode(cur_node, prev_node, Operation::TAIL);
         }
 
-        void SingleLinkedList::removeNodeAtTail()
+        void DoubleLinkedList::removeNodeAtTail()
         {
-            if (head_node == nullptr) 
-                return;
+            if (head_node == nullptr) return;
 
             Node* cur_node = head_node;
 
@@ -129,50 +136,59 @@ namespace LinkedListLib
                 return;
             }
 
-            while (cur_node->next->next != nullptr)
+            while (cur_node->next != nullptr)
             {
                 cur_node = cur_node->next;
             }
 
             linked_list_size--;
-            delete (cur_node->next);
-            cur_node->next = nullptr;
+            Node* previous_node = static_cast<DoubleNode*>(cur_node)->previous;
+            previous_node->next = nullptr;
+            delete (cur_node);
         }
 
-        void SingleLinkedList::removeNodeAtHead()
+        void DoubleLinkedList::removeNodeAtHead()
         {
             linked_list_size--;
+
             Node* cur_node = head_node;
             head_node = head_node->next;
+
+            if (head_node != nullptr)
+            {
+                static_cast<DoubleNode*>(head_node)->previous = nullptr;
+            }
 
             cur_node->next = nullptr;
             delete (cur_node);
         }
 
-        void SingleLinkedList::removeNodeAtMiddle() 
+        void DoubleLinkedList::removeNodeAtMiddle()
         {
-            if (head_node == nullptr) 
-                return;
+            if (head_node == nullptr) return; // If the list is empty, there's nothing to remove
 
-            int midIndex = findMiddleNode();
-            removeNodeAt(midIndex);
+            int midIndex = findMiddleNode();  // Use the existing function to find the middle index
+            removeNodeAt(midIndex);           // Use the existing function to remove the node at the found index
         }
 
-        void SingleLinkedList::removeNodeAt(int index)
+        void DoubleLinkedList::removeNodeAt(int index)
         {
-            if (index < 0 || index >= linked_list_size) 
-                return;
+            if (index < 0 || index >= linked_list_size) return;
 
             if (index == 0)
+            {
                 removeNodeAtHead();
-
+            }
             else
+            {
                 removeNodeAtIndex(index);
+            }
         }
 
-        void SingleLinkedList::removeNodeAtIndex(int index)
+        void DoubleLinkedList::removeNodeAtIndex(int index)
         {
             linked_list_size--;
+
             int current_index = 0;
             Node* cur_node = head_node;
             Node* prev_node = nullptr;
@@ -184,21 +200,30 @@ namespace LinkedListLib
                 current_index++;
             }
 
-            prev_node->next = cur_node->next;
+            if (prev_node != nullptr)
+            {
+                prev_node->next = cur_node->next;
+            }
+
+            if (cur_node->next != nullptr)
+            {
+                Node* next_node = cur_node->next;
+                static_cast<DoubleNode*>(next_node)->previous = prev_node;
+            }
 
             shiftNodesAfterRemoval(cur_node);
             delete(cur_node);
         }
 
-        void SingleLinkedList::shiftNodesAfterRemoval(Node* cur_node)
+        void DoubleLinkedList::shiftNodesAfterRemoval(Node* cur_node)
         {
-            Vector2i previous_node_position = cur_node->body_part.getPosition();
+            sf::Vector2i previous_node_position = cur_node->body_part.getPosition();
             Direction previous_node_direction = cur_node->body_part.getDirection();
             cur_node = cur_node->next;
 
             while (cur_node != nullptr)
             {
-                Vector2i temp_node_position = cur_node->body_part.getPosition();
+                sf::Vector2i temp_node_position = cur_node->body_part.getPosition();
                 Direction temp_node_direction = cur_node->body_part.getDirection();
 
                 cur_node->body_part.setPosition(previous_node_position);
@@ -210,10 +235,9 @@ namespace LinkedListLib
             }
         }
 
-        void SingleLinkedList::removeAllNodes()
+        void DoubleLinkedList::removeAllNodes()
         {
-            if (head_node == nullptr) 
-                return;
+            if (head_node == nullptr) return;
 
             while (head_node != nullptr)
             {
@@ -221,13 +245,13 @@ namespace LinkedListLib
             }
         }
 
-        void SingleLinkedList::removeHalfNodes()
+        void DoubleLinkedList::removeHalfNodes()
         {
-            if (linked_list_size <= 1) 
-                return;
-
+            if (linked_list_size <= 1) return;
             int half_length = linked_list_size / 2;
             int new_tail_index = half_length - 1;
+
+            std::cout << linked_list_size << ", " << new_tail_index;
 
             Node* prev_node = findNodeAtIndex(new_tail_index);
             Node* cur_node = prev_node->next;
@@ -244,7 +268,7 @@ namespace LinkedListLib
             prev_node->next = nullptr;
         }
 
-        Direction SingleLinkedList::reverse()
+        Direction DoubleLinkedList::reverse()
         {
             Node* cur_node = head_node;
             Node* prev_node = nullptr;
@@ -254,6 +278,7 @@ namespace LinkedListLib
             {
                 next_node = cur_node->next;
                 cur_node->next = prev_node;
+                static_cast<DoubleNode*>(cur_node)->previous = next_node;
 
                 prev_node = cur_node;
                 cur_node = next_node;

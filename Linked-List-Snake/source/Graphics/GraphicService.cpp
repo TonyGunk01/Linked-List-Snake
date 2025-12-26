@@ -2,8 +2,6 @@
 
 namespace Graphics
 {
-	using namespace sf;
-
 	GraphicService::GraphicService()
 	{
 		game_window = nullptr;
@@ -20,20 +18,20 @@ namespace Graphics
 		setFrameRate(frame_rate);
 	}
 
-	RenderWindow* GraphicService::createGameWindow()
+	sf::RenderWindow* GraphicService::createGameWindow()
 	{
 		configureVideoMode();
-		return new RenderWindow(video_mode, game_window_title, Style::Fullscreen);
+		return new sf::RenderWindow(video_mode, game_window_title, sf::Style::Fullscreen);
 	}
 
 	void GraphicService::configureVideoMode()
 	{
-		video_mode = *(new VideoMode(game_window_width, game_window_height, VideoMode::getDesktopMode().bitsPerPixel));
+		video_mode = *(new sf::VideoMode(game_window_width, game_window_height, sf::VideoMode::getDesktopMode().bitsPerPixel));
 	}
 
 	void GraphicService::onDestroy()
 	{
-		delete game_window;
+		delete(game_window);
 	}
 
 	void GraphicService::setFrameRate(int frame_rate_to_set)
@@ -50,7 +48,7 @@ namespace Graphics
 		return game_window->isOpen();
 	}
 
-	RenderWindow* GraphicService::getGameWindow()
+	sf::RenderWindow* GraphicService::getGameWindow()
 	{
 		return game_window;
 	}
