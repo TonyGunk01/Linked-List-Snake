@@ -6,4 +6,4 @@ I made the game in C++ using SFML (Simple Fast Multimedia Library). The game art
 
 There are various pickups like fruits (apples, mango, orange), junkfood (pizza, burger, cheese), poison and alcohol. Eating fruits reduce the snake length by 1. Eating junkfood increases snake length by 1. Poison leads to shrinking snake length by half and alcohol reverses snake direction.
 
-Video demo:
+[Click here for video demo](https://youtu.be/6TKZiPT4_wE)
